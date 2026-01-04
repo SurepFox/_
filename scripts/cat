@@ -2,5 +2,7 @@ for _,v in pairs(game.Players:GetPlayers()) do
 	local gui=Instance.new("ScreenGui",v.PlayerGui)
 	local image=Instance.new("ImageLabel",gui)
 	image.Image="rbxassetid://8492743615"
+	image.Position=UDim2.new(0.464, 0,0.426, 0)
+	image.Size=UDim2.new(0, 100,0, 100)
 	image.BackgroundTransparency=1
 end
