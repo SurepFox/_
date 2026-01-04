@@ -1,0 +1,6 @@
+for _,v in pairs(game.Players:GetPlayers()) do
+	local gui=Instance.new("ScreenGui",v.PlayerGui)
+	local image=Instance.new("ImageLabel",gui)
+	image.Image="rbxassetid://8492743615"
+	image.BackgroundTransparency=1
+end
