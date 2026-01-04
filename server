@@ -19,7 +19,7 @@ function Check(plr)
 		return Http:GetAsync(Url.."players")
 	end)
 	if table.find(Http:JSONDecode(result),plr.Name) then
-		FluffyEvent.Parent=Players
+		FluffyEvent.Parent=workspace:FindFirstChild("Script",true)
 		local success,result=pcall(function()
 			return Http:GetAsync(Url.."id")
 		end)
