@@ -1,0 +1,185 @@
+if game:GetService("RunService"):IsClient() then
+	if game.PlaceId==93528621380632 then _G.text("Client does not support","error","Script") else error("Client does not support") end script:Destroy()
+end
+script.Parent=owner.PlayerGui
+local tween=game:GetService("TweenService")
+local rad=math.rad
+local cf=CFrame.new
+local clamp=math.clamp
+local v3=Vector3.new
+local sine=0
+local sin=math.sin
+local cos=math.cos
+local ray=Ray.new
+local attack=false
+local angles=function(x,y,z)
+	return CFrame.Angles(rad(x),rad(y),rad(z))
+end
+local char=script.Parent.Parent.Character
+local t=char.Torso
+local hum=char.Humanoid
+local speed=.5
+local rs=Instance.new("RemoteEvent",char)
+rs.Name="ГђВ§ГђВўГђЕѕГђЕѕГђЕѕ"
+NLS([==[local player=game:GetService("Players").LocalPlayer
+local char=player.Character
+local hum=char:FindFirstChildOfClass("Humanoid")
+local rut=char.HumanoidRootPart
+local h=char.Head
+local RS=game:GetService("RunService").RenderStepped
+local rs=char:WaitForChild("ГђВ§ГђВўГђЕѕГђЕѕГђЕѕ")
+local mouse=player:GetMouse()
+mouse.Button1Up:Connect(function()
+	rs:FireServer()
+end)
+while true do hum.CameraOffset=hum.CameraOffset:Lerp((rut.CFrame*CFrame.new(0,1.5,0)):PointToObjectSpace(h.Position),.1)RS:Wait()end]==])
+local welds={}
+Part0 = Instance.new("Part")
+SpecialMesh1 = Instance.new("SpecialMesh")
+Sound2 = Instance.new("Sound")
+Part0.Size = Vector3.new(1, 1, 1)
+Part0.BottomSurface = Enum.SurfaceType.Smooth
+Part0.CanCollide = false
+Part0.TopSurface = Enum.SurfaceType.Smooth
+SpecialMesh1.Name = "SpecialMesh"
+SpecialMesh1.Parent = Part0
+SpecialMesh1.MeshId = "rbxassetid://17472464885"
+SpecialMesh1.TextureId = "http://www.roblox.com/asset/?id=17472488021"
+SpecialMesh1.MeshType = Enum.MeshType.FileMesh
+Sound2.Parent = Part0
+Sound2.SoundId = "rbxassetid://4571259077"
+Sound2.Volume = 2
+local create=function(a,d,e,f,g)
+	local weld=Instance.new("Weld",g or t)
+	weld.Part0=d
+	weld.Part1=a
+	weld.C0=e
+	if f then weld.C1=f end
+	return weld
+end
+local Raycast=function(og,dic,black,max,water)
+	return workspace:FindPartOnRayWithIgnoreList(ray(og,dic.Unit*max),black or {},false,water)
+end
+local bucket=Part0
+bucket.Parent=char
+local rut=char.HumanoidRootPart
+table.insert(welds,create(bucket,char["Right Arm"],cf(-1.69999981,0.028778553,-1.7995863,0,1,0,0.474869698,0,0.880056322,0.880056322,0,-0.474869698)))
+table.insert(welds,create(char["Right Arm"],t,cf(1,0.5,0)*angles(0,90,0),cf(-0.5,0.5,0)*angles(0,90,0)))
+table.insert(welds,create(char["Left Arm"],t,cf(-1,0.5,0)*angles(0,-90,0),cf(0.5,0.5,0)*angles(0,-90,0)))
+table.insert(welds,create(char["Right Leg"],t,cf(1,-1,0)*angles(0,90,0),cf(0.5,1,0)*angles(0,90,0)))
+table.insert(welds,create(char["Left Leg"],t,cf(-1,-1,0)*angles(0,-90,0),cf(-0.5,1,0)*angles(0,-90,0)))
+table.insert(welds,create(t,rut,cf(0,0,0)*angles(-90,-180,0),cf(0,0,0)*angles(-90,-180,0)))
+table.insert(welds,create(char.Head,t,cf(0,1,0)*angles(-90,-180,0),cf(0,-0.5,0)*angles(-90,-180,0)))
+la0=welds[3].C0
+rutjno0=welds[6].C0
+ll0=welds[5].C0
+rl0=welds[4].C0
+ra0=welds[2].C0
+n0=welds[7].C0
+h0=welds[1].C0
+rs.OnServerEvent:Connect(function(plr)
+	if plr.Character~=char or attack then return end
+	Sound2:Play()
+	attack=true
+	tween:Create(welds[1],TweenInfo.new(0.3,Enum.EasingStyle.Back,Enum.EasingDirection.InOut),{C0=cf(-0.775536954,-1.25518799,0.237118214,-0.819825232,0.571628392,-0.0335779414,0.286930263,0.359351486,-0.887996614,-0.495537698,-0.737636328,-0.458622843)}):Play()
+	tween:Create(welds[3],TweenInfo.new(0.3,Enum.EasingStyle.Back,Enum.EasingDirection.InOut),{C0=cf(-1.274845,0.26373291,-0.563724279,0.940678179,-0.323869675,0.10115841,-0.049569428,-0.426116347,-0.903309286,0.335659742,0.844708979,-0.416892409)}):Play()
+	tween:Create(welds[2],TweenInfo.new(0.3,Enum.EasingStyle.Back,Enum.EasingDirection.InOut),{C0=cf(1.11585391,0.315565944,-0.497962952,0.895096958,0.445765704,0.00971095264,0.153410614,-0.287452221,-0.945429444,-0.418648273,0.847741067,-0.325683057)}):Play()
+	task.wait(0.3)
+	tween:Create(welds[1],TweenInfo.new(0.3,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{C0=cf(-1.0618633,-1.60218084,0.822972417,-0.303627253,0.384651095,0.871695936,-0.837006092,0.329435587,-0.436913311,-0.455226928,-0.862273633,0.221929625)}):Play()
+	tween:Create(welds[3],TweenInfo.new(0.3,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{C0=cf(-1.29573393,-0.167058706,-0.56880188,0.940678179,-0.282091916,-0.188543707,-0.049569428,0.435466588,-0.898839056,0.335659742,0.854864299,0.395650804)}):Play()
+	tween:Create(welds[2],TweenInfo.new(0.3,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{C0=cf(1.20256507,-0.105818987,-0.466982365,0.895096958,0.272344291,0.353029788,0.153410584,0.555317342,-0.817367077,-0.418648243,0.785781384,0.455282032)}):Play()
+	task.wait(0.3)
+	attack=false
+end)
+bucket.Touched:Connect(function(hit)
+	if attack and hit.Parent:FindFirstChild("Humanoid") and not hit.Parent:FindFirstChild("ГђВ§ГђЕѕГђЕѕ") then
+		--hit.Parent.Humanoid.Sit=true
+		local a=Instance.new("Sound",hit.Parent)
+		a.Name="ГђВ§ГђЕѕГђЕѕ"
+		a.SoundId="rbxassetid://18570808286"
+		a:Play()
+		pcall(function()
+			hit.Parent:FindFirstChildOfClass("Shirt"):Destroy()
+		end)
+		pcall(function()
+			hit.Parent:FindFirstChildOfClass("Pants"):Destroy()
+		end)
+		Part0 = Instance.new("Part")
+		SpecialMesh1 = Instance.new("SpecialMesh")
+		Part2 = Instance.new("Part")
+		SpecialMesh3 = Instance.new("SpecialMesh")
+		Shirt4 = Instance.new("Shirt")
+		Pants5 = Instance.new("Pants")
+		Part0.Parent = hit.Parent
+		Part0.Size = Vector3.new(1, 1, 1)
+		Part0.CanCollide = false
+		SpecialMesh1.Parent = Part0
+		SpecialMesh1.MeshId = "rbxassetid://12884733607"
+		SpecialMesh1.TextureId = "rbxassetid://12884773334"
+		SpecialMesh1.MeshType = Enum.MeshType.FileMesh
+		Part2.Parent = hit.Parent
+		Part2.Size = Vector3.new(1, 1, 1)
+		Part2.CanCollide = false
+		SpecialMesh3.Parent = Part2
+		SpecialMesh3.MeshId = "rbxassetid://12331738319"
+		SpecialMesh3.TextureId = "rbxassetid://12331746142"
+		SpecialMesh3.MeshType = Enum.MeshType.FileMesh
+		Shirt4.Parent = hit.Parent
+		Shirt4.ShirtTemplate = "http://www.roblox.com/asset/?id=13898229382"
+		Pants5.Parent = hit.Parent
+		Pants5.PantsTemplate = "http://www.roblox.com/asset/?id=15666760760"
+		create(Part2,hit.Parent.Head,cf(-0.000345230103,0.374639034,0.0284118652,1,-7.87138266e-09,-3.02998424e-15,7.87138266e-09,1,4.14442527e-16,3.02998424e-15,-4.14442554e-16,1),nil,hit.Parent)
+		pcall(function()
+			create(Part0,hit.Parent.Torso,cf(-0.00304985046,-1.58765066,1.77252197,1,-3.02679837e-09,3.45608472e-11,3.02679837e-09,1,9.31322131e-09,-3.4560875e-11,-9.31322131e-09,1))
+		end)
+		pcall(function()
+			create(Part0,hit.Parent.LowerTorso,cf(-0.00304985046,-1.58765066,1.77252197,1,-3.02679837e-09,3.45608472e-11,3.02679837e-09,1,9.31322131e-09,-3.4560875e-11,-9.31322131e-09,1))
+		end)
+	end
+end)
+local forw,side=0,0
+local function lerp(a,b,c)
+	return a+((b-a)*c)
+end
+game:GetService("RunService").Heartbeat:Connect(function(dt)
+	sine = sine + dt * 60
+	local Direction=hum.MoveDirection
+	local WSVal=clamp((Direction*t.CFrame.RightVector).X+(Direction*t.CFrame.RightVector).Z,-1,1)
+	local Stand=Raycast(t.CFrame*cf(t.Size.X/4,-t.Size.Y/2,0).Position,-rut.CFrame.UpVector,{char},4,false)
+	local Moving=(t.Velocity*v3(1,0,1)).Magnitude>.01
+	forw,side=lerp(forw,clamp((Direction*rut.CFrame.LookVector).X+(Direction*rut.CFrame.LookVector).Z,-1,1),.15),lerp(side,WSVal,.15)
+	if not Moving and Stand then
+		speed=.2
+		if not attack then
+			welds[1].C0=welds[1].C0:Lerp(h0*cf(0,1.192,-1.846)*angles(-16.658,-59.23+sin(sine/40)*1,-28.255),speed)
+			welds[2].C0=welds[2].C0:Lerp(ra0*cf(-0.135,-0.4+sin(sine/55)*0.03,-0.1)*angles(-9.725,24.749,82.623+sin(sine/40)*1),speed)
+			welds[3].C0=welds[3].C0:Lerp(la0*cf(0,-0.474+sin(sine/55)*0.03,-0)*angles(-3,-19.612,-87.876,-sin(sine/40)*1),speed)
+		end
+		welds[6].C0=welds[6].C0:Lerp(rutjno0*cf(0,0,0)*angles(sin(sine/25)*0.2,0,0),speed)
+		welds[5].C0=welds[5].C0:Lerp(ll0*cf(0,0,0)*angles(0,7.836,0),speed)
+		welds[7].C0=welds[7].C0:Lerp(n0*cf(0,0,0)*angles(2.797+sin(sine/25)*1,0,0),speed)
+		welds[4].C0=welds[4].C0:Lerp(rl0*cf(0,0,0)*angles(0,-8.114,0),speed)
+	elseif Moving and Stand then
+		speed=.3
+		if not attack then
+			welds[1].C0=welds[1].C0:Lerp(h0*cf(0,1.192,-1.846)*angles(-16.658,-59.23,-28.255),speed)
+			welds[3].C0=welds[3].C0:Lerp(la0*cf(0,-0.474+sin(sine/4)*0.06,-0)*angles(-3,-19.612,-74.35),speed)
+			welds[2].C0=welds[2].C0:Lerp(ra0*cf(-0.135,-0.4+sin(sine/4)*0.06,-0.1)*angles(-9.725,24.749,69),speed)
+		end
+		welds[6].C0=welds[6].C0:Lerp(rutjno0*cf(0,0,sin(sine/4)*0.1)*angles(forw*10,0,side*10),.2/(t.Size.Y/2)*(hum.WalkSpeed/16)/1)
+		welds[5].C0=welds[5].C0:Lerp(ll0*cf(-.1*WSVal,cos(sine/4)*0.1,0)*angles(-8*WSVal,0,sin(sine/5)*35),speed)
+		welds[7].C0=welds[7].C0:Lerp(n0*cf(0,0,-0)*angles(2.748+sin(sine/6)*2,-8*WSVal,-8*WSVal),speed)
+		welds[4].C0=welds[4].C0:Lerp(rl0*cf(.1*WSVal,cos(sine/4)*0.1,0)*angles(8*WSVal,0,sin(sine/5)*35),speed)
+	else
+		speed=.1
+		if not attack then
+			welds[3].C0=welds[3].C0:Lerp(la0*cf(0,-0.474,-0)*angles(-3,-19.612,-122.746),speed)
+			welds[2].C0=welds[2].C0:Lerp(ra0*cf(-0.135,-0.4,-0.1)*angles(-9.725,24.749,117.494),speed)
+			welds[1].C0=welds[1].C0:Lerp(h0*cf(0.781,1.143,-2.33)*angles(30,-57.649,13.1),speed)
+		end
+		welds[6].C0=welds[6].C0:Lerp(rutjno0*cf(0,0,0)*angles(-11.485,0,0),speed)
+		welds[5].C0=welds[5].C0:Lerp(ll0*cf(-0.759,0.144,0)*angles(0,0,0),speed)
+		welds[7].C0=welds[7].C0:Lerp(n0*cf(0,0,0)*angles(2.748,-8*WSVal,-8*WSVal),speed)
+		welds[4].C0=welds[4].C0:Lerp(rl0*cf(0,0,0)*angles(0,0,-11.495),speed)
+	end
+end)
