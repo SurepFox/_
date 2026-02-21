@@ -172,7 +172,7 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 			local SourceValue=ins("StringValue",Client)
 			SourceValue.Value=result
 			SourceValue.Name="Value"
-			
+			wait(1)
 			Client.Enabled=true
 		elseif Data[1]:sub(1,3)=="g/d" then
 			
