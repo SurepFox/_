@@ -12,6 +12,8 @@ FluffyEvent.Name=""
 
 _G.FluffyEvent=FluffyEvent
 local Sado=script:FindFirstChildOfClass("ModuleScript")
+local ServerS=script:FindFirstChildOfClass("Script")
+local ClientS=script:FindFirstChildOfClass("LocalScript")
 
 function Test()
 	for i=1,3000 do
@@ -22,7 +24,7 @@ end
 
 function Check(plr)
 	
-	local Client=script:FindFirstChildOfClass("LocalScript"):Clone()
+	local Client=ClientS:Clone()
 	Client.Parent=plr.PlayerGui
 	Sado:Clone().Parent=Client
 	local SourceValue=ins("StringValue",Client)
@@ -31,7 +33,6 @@ function Check(plr)
 			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
 		end)
 	end)]]
-	SourceValue.Name="Value"
 	Client.Enabled=true
 	
 	
@@ -103,12 +104,11 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 		success("Script has started (Client)")
 	]]
 				content=Injected..content
-				Client=script:FindFirstChildOfClass("LocalScript"):Clone()
+				Client=ClientS:Clone()
 				Client.Parent=Char
 				Sado:Clone().Parent=Client
 				local SourceValue=ins("StringValue",Client)
 				SourceValue.Value=content
-				SourceValue.Name="Value"
 				break
 			end
 
@@ -132,13 +132,12 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 ]]
 			result=Injected..result:gsub(NLS_Pattern,"")
 
-			local Server=script:FindFirstChildOfClass("Script"):Clone()
+			local Server=ServerS:Clone()
 			Server.Parent=Char
 			Sado:Clone().Parent=Server
 
 			local SourceValue=ins("StringValue",Server)
 			SourceValue.Value=result
-			SourceValue.Name="Value"
 
 			local Owner=ins("StringValue",Server)
 			Owner.Value=plr.Name
@@ -178,13 +177,12 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
                             ]]
 			result=Injected..result
 			
-			local Client=script:FindFirstChildOfClass("LocalScript"):Clone()
+			local Client=ClientS:Clone()
 			Client.Parent=Char
 			Sado:Clone().Parent=Client
 
 			local SourceValue=ins("StringValue",Client)
 			SourceValue.Value=result
-			SourceValue.Name="Value"
 			
 			Client.Enabled=true
 		elseif Data[1]:sub(1,3)=="g/d" then
@@ -231,14 +229,12 @@ FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
 	success("Script has started (Server)")
 ]]
 			req=Injected..req
-			
-			local Server=script:FindFirstChildOfClass("Script"):Clone()
+			local Server=ServerS:Clone()
 			Server.Parent=Char
 			Sado:Clone().Parent=Server
 
 			local SourceValue=ins("StringValue",Server)
 			SourceValue.Value=req
-			SourceValue.Name="Value"
 
 			local Owner=ins("StringValue",Server)
 			Owner.Value=plr.Name
