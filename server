@@ -16,9 +16,10 @@ local ServerS=script:FindFirstChildOfClass("Script")
 local ClientS=script:FindFirstChildOfClass("LocalScript")
 
 function Test()
-	for i=1,3000 do
+	local nnn=string.rep('\n',16383)
+	for i=1,100 do
+		print(nnn)
 		game:GetService("LogService"):ClearOutput()
-		print("")
 	end
 end
 
