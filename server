@@ -1,4 +1,4 @@
-pcall(function() getfenv(0).script.Parent=nil; script:Destroy() end)
+pcall(function() script.Parent=nil end)
 -- alt
 -- i used too old a code in the future i optimize
 
