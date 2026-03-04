@@ -2527,7 +2527,6 @@ cff1 = CFrame.new(shot.Position,mouse.Hit.p)
 mouse.Button1Down:connect(function()
 	firee()
 end)
-
 NLS([==[while true do
 	local ra = owner.Character:FindFirstChild("Right Arm")
 	local la = owner.Character:FindFirstChild("Left Arm")
@@ -2543,7 +2542,6 @@ NLS([==[while true do
 		wait()
 	end
 	end]==])
-
 while true do
 	cff1 = CFrame.new(shot.Position,mouse.Hit.p)
 	bgyro.MaxTorque = Vector3.new(0,huge,huge)
