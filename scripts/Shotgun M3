@@ -2515,21 +2515,17 @@ mouse.Button1Down:connect(function()
 	firee()
 end)
 
-NLS([==[task.spawn(function()
-	local owner=game.Players.LocalPlayer
-	while true do
-		local ra = owner.Character:FindFirstChild("Right Arm")
-		local la = owner.Character:FindFirstChild("Left Arm")
-		ra.Parent:FindFirstChildOfClass("Humanoid").Died:connect(function()
-			script:Destroy()
-		end)
-		ra.LocalTransparencyModifier = 0
-		la.LocalTransparencyModifier = 0
-		for i,v in pairs(owner.Character:FindFirstChild("Shotgun M3"):GetChildren()) do
-			if v:IsA("Part") then
-				v.LocalTransparencyModifier = 0
-			end
-			wait()
+NLS([==[local ra = owner.Character:FindFirstChild("Right Arm")
+local la = owner.Character:FindFirstChild("Left Arm")
+ra.Parent:FindFirstChildOfClass("Humanoid").Died:connect(function()
+	script:Destroy()
+end)
+game:GetService("RunService").RenderStepped:Connect(function()
+	ra.LocalTransparencyModifier = 0
+	la.LocalTransparencyModifier = 0
+	for i,v in pairs(owner.Character:FindFirstChild("Shotgun M3"):GetChildren()) do
+		if v:IsA("Part") then
+			v.LocalTransparencyModifier = 0
 		end
 	end
 end)
