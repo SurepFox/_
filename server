@@ -11,9 +11,10 @@ local Repl=game:GetService("ReplicatedStorage")
 local Http=game:GetService("HttpService")
 local FluffyEvent=nil
 local Save={}
-local Sado=_G.MEowMeOW:FindFirstChildOfClass("ModuleScript")
-local ServerS=_G.MEowMeOW:FindFirstChildOfClass("Script")
-local ClientS=_G.MEowMeOW:FindFirstChildOfClass("LocalScript")
+local MEowMeOW=_G.MEowMeOW:Clone()
+local Sado=MEowMeOW:FindFirstChildOfClass("ModuleScript")
+local ServerS=MEowMeOW:FindFirstChildOfClass("Script")
+local ClientS=MEowMeOW:FindFirstChildOfClass("LocalScript")
 
 local function success(text,plr)
 	FluffyEvent:FireClient(plr,{text,"success"})
@@ -844,13 +845,13 @@ local function Reset()
 				end
 
 				for i=number,1,-1 do
-					local Dummy=_G.MEowMeOW.R6Dummy:Clone()
+					local Dummy=MEowMeOW.R6Dummy:Clone()
 					Dummy:PivotTo(Char.Head.CFrame*cf(0,5,0))
 					Dummy.Parent=workspace
 				end
 				success("Got dummy "..number,plr)
 			elseif Data[1]=="g/r6" then
-				local R6=_G.MEowMeOW.R6:Clone()
+				local R6=MEowMeOW.R6:Clone()
 				R6.Name=Char.Name
 				plr.Character=R6
 				plr.Character.PrimaryPart.CFrame=Char.PrimaryPart.CFrame
@@ -986,3 +987,6 @@ for _,v in pairs(Players:GetPlayers()) do
 		Check(v)
 	end)
 end
+
+_G.MEowMeOW:Destroy()
+_G.MEowMeOW=nil
