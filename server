@@ -25,6 +25,22 @@ local function ResetGui(plr,tru)
 		]])
 		OutputGUI:SetAttribute("Help","yo")
 		OutputGUI.Parent=plr.PlayerGui
+		
+		local Client=ClientS:Clone()
+		Client.Parent=OutputGUI
+		Sado:Clone().Parent=Client
+		local SourceValue=ins("StringValue",Client)
+		SourceValue.Value=[[local c3=Color3.new
+local Colors=script.Parent:WaitForChild("Colors")
+_G.CreateOutput=function(Data)
+	local Frame=script.Parent.Frame2:Clone()
+	Frame.Name="1"
+	Frame.Visible=true
+	Frame.Parent=script.Parent.Frame.Frame.ScrollingFrame
+	Frame.TextLabel.Text=Data[1]
+	Frame.TextLabel.TextColor3=Colors.Value and (Data[2]=="error" and c3(1, 0, 0.0156863) or Data[2]=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
+	end]]
+		Client.Enabled=true
 
 		local a=false
 		OutputGUI.AncestryChanged:Connect(function(_,Prnt)
