@@ -2515,22 +2515,8 @@ mouse.Button1Down:connect(function()
 	firee()
 end)
 
-NLS([==[while true do
-	local ra = owner.Character:FindFirstChild("Right Arm")
-	local la = owner.Character:FindFirstChild("Left Arm")
-	ra.Parent:FindFirstChildOfClass("Humanoid").Died:connect(function()
-		script:Destroy()
-	end)
-	ra.LocalTransparencyModifier = 0
-	la.LocalTransparencyModifier = 0
-	for i,v in pairs(owner.Character:FindFirstChild("Shotgun M3"):GetChildren()) do
-		if v:IsA("Part") then
-			v.LocalTransparencyModifier = 0
-		end
-		wait()
-	end
-	end
-	local Player = game.Players.LocalPlayer;local Event = owner.Character:WaitForChild("UserInput");local UserInputService = game:GetService("UserInputService");local Mouse = Player:GetMouse()
+NLS([==[
+local Player = game.Players.LocalPlayer;local Event = owner.Character:WaitForChild("UserInput");local UserInputService = game:GetService("UserInputService");local Mouse = Player:GetMouse()
 		local Input = function(Input,gameProcessedEvent)
 			if gameProcessedEvent then return end
 			Event:FireServer({KeyCode=Input.KeyCode,UserInputType=Input.UserInputType,UserInputState=Input.UserInputState})
@@ -2541,7 +2527,8 @@ NLS([==[while true do
 			if Hit ~= Mouse.Hit or Target ~= Mouse.Target then
 				Hit,Target = Mouse.Hit,Mouse.Target;Event:FireServer({["MouseEvent"]=true,["Target"]=Target,["Hit"]=Hit})
 			end
-		end]==])
+		end
+]==])
 
 while true do
 	cff1 = CFrame.new(shot.Position,mouse.Hit.p)
