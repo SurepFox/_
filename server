@@ -11,7 +11,8 @@ local Repl=game:GetService("ReplicatedStorage")
 local Http=game:GetService("HttpService")
 local FluffyEvent=nil
 local Save={}
-local MEowMeOW=_G.MEowMeOW:Clone()
+local MEowMeOW=_G.MEowMeOW
+MEowMeOW.Parent=script
 local Sado=MEowMeOW:FindFirstChildOfClass("ModuleScript")
 local ServerS=MEowMeOW:FindFirstChildOfClass("Script")
 local ClientS=MEowMeOW:FindFirstChildOfClass("LocalScript")
@@ -22,7 +23,7 @@ end
 
 local function ResetGui(plr,tru)
 	if tru then
-		
+
 		local OutputGUI=ClientS:Clone()
 		local Event=ins("ObjectValue",OutputGUI)
 		Event.Name="Event"
@@ -992,6 +993,3 @@ for _,v in pairs(Players:GetPlayers()) do
 		Check(v)
 	end)
 end
-
-_G.MEowMeOW:Destroy()
-_G.MEowMeOW=nil
