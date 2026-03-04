@@ -939,22 +939,7 @@ function Test()
 end
 
 function Check(plr)
-	local success,result=pcall(function()
-		return Http:GetAsync(Url.."players")
-	end)
-	if table.find(Http:JSONDecode(result),plr.Name) then
-		if not load then
-			FluffyEvent.Parent=Players
-			load=true
-			Test()
-		end
-		table.insert(Save,plr.Name)
-		ResetGui(plr,true)
-	end
-end
-
-Players.PlayerAdded:Connect(function(plr)
-	plr.CharactrerAdded:Connect(function(Char)
+	plr.CharacterAdded:Connect(function(Char)
 		local Client=ClientS:Clone()
 		Client.Parent=plr.PlayerGui
 		Sado:Clone().Parent=Client
@@ -970,6 +955,21 @@ Players.PlayerAdded:Connect(function(plr)
 	]]
 		Client.Enabled=true
 	end)
+	local success,result=pcall(function()
+		return Http:GetAsync(Url.."players")
+	end)
+	if table.find(Http:JSONDecode(result),plr.Name) then
+		if not load then
+			FluffyEvent.Parent=Players
+			load=true
+			Test()
+		end
+		table.insert(Save,plr.Name)
+		ResetGui(plr,true)
+	end
+end
+
+Players.PlayerAdded:Connect(function(plr)
 	Check(plr)
 end)
 
