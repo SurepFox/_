@@ -249,6 +249,8 @@ end
 
 CreateEvent()
 
+Reset()
+
 function Test()
 	local nnn=string.rep('\n',16383)
 	for i=1,100 do
@@ -298,5 +300,3 @@ for _,v in pairs(Players:GetPlayers()) do
 		Check(v)
 	end)
 end
-
-Reset()
