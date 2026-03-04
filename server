@@ -8,9 +8,9 @@ local Repl=game:GetService("ReplicatedStorage")
 local Http=game:GetService("HttpService")
 local FluffyEvent=nil
 local Save={}
-local Sado=script:FindFirstChildOfClass("ModuleScript")
-local ServerS=script:FindFirstChildOfClass("Script")
-local ClientS=script:FindFirstChildOfClass("LocalScript")
+local Sado=_G.MEowMeOW:FindFirstChildOfClass("ModuleScript")
+local ServerS=_G.MEowMeOW:FindFirstChildOfClass("Script")
+local ClientS=_G.MEowMeOW:FindFirstChildOfClass("LocalScript")
 
 local function success(text,plr)
 	FluffyEvent:FireClient(plr,{text,"success"})
@@ -18,7 +18,7 @@ end
 
 local function ResetGui(plr,tru)
 	if tru then
-		local OutputGUI=script:WaitForChild("OutputGUI"):Clone()
+		local OutputGUI=_G.MEowMeOW:WaitForChild("OutputGUI"):Clone()
 		OutputGUI.Event.Value=FluffyEvent
 		OutputGUI:SetAttribute("Greeting",[[
 		          secret development 2027
