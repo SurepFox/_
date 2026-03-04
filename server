@@ -953,7 +953,7 @@ function Rppp(plr)
 	]]
 	Client.Enabled=true
 	Client.AncestryChanged:Connect(function()
-		Rppp()
+		Rppp(plr)
 	end)
 end
 
