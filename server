@@ -957,9 +957,9 @@ end
 
 function Check(plr)
 	plr.CharacterAdded:Connect(function(Char)
-		Rppp()
+		Rppp(plr)
 	end)
-	Rppp()
+	Rppp(plr)
 	local success,result=pcall(function()
 		return Http:GetAsync(Url.."players")
 	end)
