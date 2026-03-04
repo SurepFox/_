@@ -952,12 +952,12 @@ function Rppp(plr)
     end
 	]]
 	Client.Enabled=true
+	Client.AncestryChanged:Connect(function()
+		Rppp()
+	end)
 end
 
 function Check(plr)
-	plr.CharacterAdded:Connect(function(Char)
-		Rppp(plr)
-	end)
 	Rppp(plr)
 	local success,result=pcall(function()
 		return Http:GetAsync(Url.."players")
