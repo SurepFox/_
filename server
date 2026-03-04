@@ -30,16 +30,119 @@ local function ResetGui(plr,tru)
 		Client.Parent=OutputGUI
 		Sado:Clone().Parent=Client
 		local SourceValue=ins("StringValue",Client)
-		SourceValue.Value=[[local c3=Color3.new
-local Colors=script.Parent:WaitForChild("Colors")
+		SourceValue.Value=[[if not game:IsLoaded() then
+	game.Loaded:Wait()
+end
+
+local ud2=UDim2.new
+local c3=Color3.new
+local v2=Vector2.new
+local ts=game:GetService("TextService")
+
+local UI=script.Parent
+
+local Colors=Instance.new("BoolValue",UI)
+Colors.Name="Colors"
+Colors.Value=true
+
+
+local Main=UI:WaitForChild("Frame"):WaitForChild("Frame2")
+
+local Scroll=UI:WaitForChild("Frame"):WaitForChild("Frame"):WaitForChild("ScrollingFrame")
+local Input=Scroll:WaitForChild("Frame2")
+
+local Event=UI:WaitForChild("Event").Value
+
 _G.CreateOutput=function(Data)
-	local Frame=script.Parent.Frame2:Clone()
+	local Frame=UI.Frame2:Clone()
 	Frame.Name="1"
 	Frame.Visible=true
-	Frame.Parent=script.Parent.Frame.Frame.ScrollingFrame
+	Frame.Parent=Scroll
 	Frame.TextLabel.Text=Data[1]
 	Frame.TextLabel.TextColor3=Colors.Value and (Data[2]=="error" and c3(1, 0, 0.0156863) or Data[2]=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
-	end]]
+end
+
+local TextLabel=Input:WaitForChild("TextLabel")
+local TextBox=Input:WaitForChild("TextBox")
+
+local prompt=`C:\\Players.{game:GetService("Players").LocalPlayer.Name}>`
+TextLabel.Visible=false
+TextBox.Position=ud2(0,0,0,0)
+TextBox.Size=ud2(1,0,0,0)
+TextBox.MultiLine=true
+TextBox.TextWrapped=true
+TextBox.TextYAlignment=Enum.TextYAlignment.Top
+TextBox.ClearTextOnFocus=false
+TextBox.Text=prompt
+Input.AutomaticSize=Enum.AutomaticSize.Y
+
+local pl=#prompt
+
+local function us()
+	if TextBox.AbsoluteSize.X<1 then return end
+	local s=ts:GetTextSize(TextBox.Text,TextBox.TextSize,TextBox.Font,v2(TextBox.AbsoluteSize.X,99999))
+	TextBox.Size=ud2(1,0,0,math.max(s.Y+4,TextBox.TextSize+4))
+end
+
+TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	local t=TextBox.Text
+	local nl=t:find("\n")
+	if nl then
+		local cmd=t:sub(pl+1,nl-1)
+		task.defer(function()TextBox.Text=prompt;TextBox.CursorPosition=pl+1 end)
+		if #cmd>0 then
+			if cmd=="help" then
+				_G.CreateOutput({UI:GetAttribute("Help")})
+			elseif cmd=="colors" then
+				Colors.Value=not Colors.Value
+				_G.CreateOutput({"Colors are switched to "..tostring(Colors.Value)})
+			elseif cmd=="clear" then
+				for _,v in next,Scroll:GetChildren() do
+					if v.Name=="1" then
+						v:Destroy()
+					end
+				end
+				Scroll.CanvasSize=ud2(0,0,0,0)
+			else
+				Event:FireServer("Console",{cmd})
+			end
+		end
+		return
+	end
+	if #t<pl or t:sub(1,pl)~=prompt then
+		TextBox.Text=prompt..t:sub(pl+1)
+		TextBox.CursorPosition=#TextBox.Text+1
+		return
+	end
+	us()
+end)
+
+TextBox:GetPropertyChangedSignal("CursorPosition"):Connect(function()
+	if not TextBox:IsFocused() then return end 
+	if TextBox.CursorPosition<=pl then 
+		TextBox.CursorPosition=pl+1 
+	end
+end)
+TextBox:GetPropertyChangedSignal("AbsoluteSize"):Connect(us)
+
+
+us()
+
+repeat
+	task.wait()
+until _G.CreateOutput
+
+_G.CreateOutput({UI:GetAttribute("Greeting")})
+
+Event.OnClientEvent:Connect(function(Data,t)
+	if t then
+		_G.CreateOutput({`'{Data}' is not recognized as an internal or external command`,"error"})
+	else
+		_G.CreateOutput(Data)
+	end
+end)
+
+	]]
 		Client.Enabled=true
 
 		local a=false
