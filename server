@@ -23,6 +23,7 @@ local function ResetGui(plr,tru)
 		OutputGUI:SetAttribute("Greeting",[[
 		          secret development 2027
 		]])
+		OutputGUI:SetAttribute("Help","yo")
 		OutputGUI.Parent=plr.PlayerGui
 
 		local a=false
@@ -215,8 +216,9 @@ local function Reset()
 				Server.Enabled=true
 				success("Executed the script "..OldReq,plr)
 				Test()
+			else
+				FluffyEvent:FireClient(plr,Data[1],true)
 			end
-
 		end
 	end)
 
