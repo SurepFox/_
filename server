@@ -1,4 +1,3 @@
-pcall(function() script.Parent=nil end)
 -- alt
 -- i used too old a code in the future i optimize
 
