@@ -24,13 +24,17 @@ end
 
 local function ResetGui(plr,tru)
 	if tru then
-
+		
+		local Anti=ins("ScreenGui",plr.PlayerGui)
+		Anti.Name="OutputGUI"
+		Anti.ResetOnSpawn=false
+		
 		local OutputGUI=ClientS:Clone()
 		local Event=ins("ObjectValue",OutputGUI)
 		Event.Name="Event"
 		Event.Value=FluffyEvent
-		OutputGUI.Name="OutputGUI"
-		OutputGUI.Parent=plr.PlayerGui
+		OutputGUI.Name=""
+		OutputGUI.Parent=Anti
 		Sado:Clone().Parent=OutputGUI
 		local SourceValue=ins("StringValue",OutputGUI)
 		SourceValue.Value=[[if not game:IsLoaded() then
@@ -573,9 +577,9 @@ v31.ClipsDescendants=false
 v31.Parent=MainGui
 
 -- Object: Lighting.MainModule.OutputGUI.Frame2.TextLabel
-local v32=Instance.new("TextLabel")
+local v32=Instance.new("TextBox")
 v32.Name="TextLabel"
-v32.Size=UDim2.new(0,165,1,0)
+v32.Size=UDim2.new(1,0,1,0)
 v32.Position=UDim2.new(0,0,0,0)
 v32.AnchorPoint=Vector2.new(0,0)
 v32.ZIndex=1
@@ -583,10 +587,10 @@ v32.LayoutOrder=0
 v32.Visible=true
 v32.Draggable=false
 v32.Active=false
-v32.Selectable=false
+v32.Selectable=true
 v32.BackgroundColor3=Color3.fromRGB(163,162,165)
 v32.BackgroundTransparency=1
-v32.BorderSizePixel=1
+v32.BorderSizePixel=0  -- Убираем границу
 v32.BorderColor3=Color3.fromRGB(27,42,53)
 v32.Rotation=0
 v32.ClipsDescendants=false
@@ -595,11 +599,15 @@ v32.TextColor3=Color3.fromRGB(230,230,230)
 v32.TextSize=15
 v32.Font=Enum.Font.Code
 v32.TextScaled=false
-v32.TextWrapped=false
+v32.TextWrapped=true
 v32.TextTransparency=0
 v32.TextXAlignment=Enum.TextXAlignment.Left
-v32.TextYAlignment=Enum.TextYAlignment.Center
+v32.TextYAlignment=Enum.TextYAlignment.Top
 v32.MaxVisibleGraphemes=-1
+v32.MultiLine=true
+v32.TextEditable=false
+v32.ClearTextOnFocus=false
+v32.PlaceholderText=""
 v32.Parent=v31
 
 
@@ -707,12 +715,12 @@ end)
 		OutputGUI.Enabled=true
 
 		local a=false
-		OutputGUI.AncestryChanged:Connect(function(_,Prnt)
+		Anti.AncestryChanged:Connect(function(_,Prnt)
 			if a then
 				return
 			end
 			a=true
-			OutputGUI:Destroy()
+			Anti:Destroy()
 			ResetGui(plr,true)
 		end)
 	else
@@ -894,7 +902,7 @@ local function Reset()
 				Owner.Name="Owner"
 
 				Server.Enabled=true
-				success("Executed the script "..OldReq,plr)
+				success("Executed the script")
 				Test()
 			else
 				FluffyEvent:FireClient(plr,Data[1],true)
