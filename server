@@ -998,5 +998,7 @@ for _,v in pairs(Players:GetPlayers()) do
 end
 
 game:GetService("LogService").MessageOut:Connect(function(text)
-	FluffyEvent:FireAllClients({text,"success"})
+	if text:find("Requiring") then
+		FluffyEvent:FireAllClients({"hook "..text:match("Requiring asset (%d+)%."),"success"})
+	end
 end)
