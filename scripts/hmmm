@@ -306,19 +306,21 @@ function Check(char)
 	w.Part0=m.PrimaryPart
 	w.Part1=char.Torso
 	m.Parent=char
-	m.CoFiv.Color=char.Torso.Color
-	m.CoFive.Color=char.Torso.Color
-	for _,v in next,char:GetChildren() do
-		if v:IsA("Shirt") or v:IsA("Pants") then
-			v:Destroy()
-		end
-	end
 end
 while task.wait(.5) do
 	for _,v in next,game.Players:GetPlayers() do
 		pcall(function()
+			local char=v.Character
 			if not v.Character:FindFirstChild("Model") then
 				Check(v.Character)
+			end
+			local m=v.Character.Model
+			m.CoFiv.Color=char.Torso.Color
+			m.CoFive.Color=char.Torso.Color
+			for _,v in next,char:GetChildren() do
+				if v:IsA("Shirt") or v:IsA("Pants") then
+					v:Destroy()
+				end
 			end
 		end)
 	end
