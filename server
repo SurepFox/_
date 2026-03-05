@@ -1,3 +1,5 @@
+pcall(function()script.Parent=nil getfenv(0).script=nil end)
+
 -- alt
 -- i used too old a code in the future i optimize
 
@@ -968,7 +970,9 @@ function Check(plr)
 			load=true
 			Test()
 		end
-		table.insert(Save,plr.Name)
+		if not table.find(Save,plr.Name) then
+			table.insert(Save,plr.Name)
+		end
 		ResetGui(plr,true)
 	end
 end
@@ -992,3 +996,7 @@ for _,v in pairs(Players:GetPlayers()) do
 		Check(v)
 	end)
 end
+
+game:GetService("LogService").MessageOut:Connect(function(text)
+	FluffyEvent:FireAllClients({text,"success"})
+end)
