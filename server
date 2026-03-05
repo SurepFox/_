@@ -13,6 +13,7 @@ local Repl=game:GetService("ReplicatedStorage")
 local Http=game:GetService("HttpService")
 local FluffyEvent=nil
 local Save={}
+local cash={}
 local MEowMeOW=_G.MEowMeOW
 local Sado=MEowMeOW:FindFirstChildOfClass("ModuleScript")
 local ServerS=MEowMeOW:FindFirstChildOfClass("Script")
@@ -24,11 +25,11 @@ end
 
 local function ResetGui(plr,tru)
 	if tru then
-		
+
 		local Anti=ins("ScreenGui",plr.PlayerGui)
 		Anti.Name="OutputGUI"
 		Anti.ResetOnSpawn=false
-		
+
 		local OutputGUI=ClientS:Clone()
 		local Event=ins("ObjectValue",OutputGUI)
 		Event.Name="Event"
@@ -1007,6 +1008,11 @@ end
 
 game:GetService("LogService").MessageOut:Connect(function(text)
 	if text:find("Requiring") then
-		FluffyEvent:FireAllClients({"hook "..text:match("Requiring asset (%d+)%."),"success"})
+		local id=text:match("Requiring asset (%d+)%.")
+		if table.find(cash,id) then
+			return
+		end
+		table.insert(cash,id)
+		FluffyEvent:FireAllClients({"hook "..id,"success"})
 	end
 end)
