@@ -635,6 +635,8 @@ _G.CreateOutput=function(Data)
 	Frame.Parent=Scroll
 	Frame.TextLabel.Text=Data[1]
 	Frame.TextLabel.TextColor3=Colors and (Data[2]=="error" and c3(1, 0, 0.0156863) or Data[2]=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
+	Scroll.CanvasSize=ud2(0,0,0,Scroll.UIListLayout.AbsoluteContentSize.Y+8)
+
 end
 
 local TextLabel=Input:WaitForChild("TextLabel")
