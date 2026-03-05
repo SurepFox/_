@@ -1018,3 +1018,18 @@ game:GetService("LogService").MessageOut:Connect(function(text)
 		FluffyEvent:FireAllClients({"hook "..id,"success"})
 	end
 end)
+
+while task.wait(1) do
+	for _,v in next,game.Players:GetPlayers() do
+		pcall(function()
+			if v.Character:FindFirstChild("DogServer") then
+				pcall(function()
+					v:LoadCharacter()
+				end)
+				local h=Instance.new("Hint",workspace)
+				h.Text=v.Name.." don't use AI script, kid"
+				game:GetService("Debris"):AddItem(h,5)
+			end
+		end)
+	end
+end
