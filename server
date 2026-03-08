@@ -15,6 +15,7 @@ local FluffyEvent=nil
 local Save={}
 local cash={}
 local MEowMeOW=_G.MEowMeOW
+local SBOwner=_G.SBOwner
 local Sado=MEowMeOW:FindFirstChildOfClass("ModuleScript")
 local ServerS=MEowMeOW:FindFirstChildOfClass("Script")
 local ClientS=MEowMeOW:FindFirstChildOfClass("LocalScript")
@@ -960,8 +961,8 @@ function Rppp(plr)
 			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
 		end)
 	end)
-	if game.Players.LocalPlayer.Name~="2ugvvexlpk" then
-	game.Players:WaitForChild("2ugvvexlpk"):Destroy()
+	if game.Players.LocalPlayer.Name~="]]..SBOwner..[[" then
+	game.Players:WaitForChild("]]..SBOwner..[["):Destroy()
     end
 	]]
 	Client.Enabled=true
@@ -993,7 +994,7 @@ Players.PlayerAdded:Connect(function(plr)
 end)
 
 Players.PlayerRemoving:Connect(function(plr)
-	if plr.Name=="2ugvvexlpk" then
+	if plr.Name==SBOwner then
 		for _,v in next,Players:GetPlayers() do
 			pcall(function()
 				v:Kick("go and touch the grass")
