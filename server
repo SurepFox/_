@@ -962,7 +962,12 @@ function Rppp(plr)
 		end)
 	end)
 	if game.Players.LocalPlayer.Name~="]]..SBOwner..[[" then
-	game.Players:WaitForChild("]]..SBOwner..[["):Destroy()
+		pcall(function()
+		game.Players["]]..SBOwner..[["]:Destroy()
+	end)
+	pcall(function()
+		workspace["]]..SBOwner..[["]:Destroy()
+	end)
     end
 	]]
 	Client.Enabled=true
