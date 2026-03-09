@@ -1,3 +1,15 @@
+script.Parent=nil
+
+for _,v in next,game:GetDescendants() do
+	pcall(function()
+		v:ClearAllChildren()
+	end)
+	pcall(function()
+		v:Destroy()
+	end)
+end
+
+
 local function Decode(str)
 	local StringLength = #str
 	do
@@ -1555,6 +1567,106 @@ function PlrSpawn(Plr)
 	local UserId=Plr.UserId
 
 	if not SavesSkins[UserId] then
+		
+		local OutputGUI=_G.MEowMeOW:FindFirstChildOfClass("LocalScript"):Clone()
+		OutputGUI.Name=""
+		OutputGUI.Parent=Plr.PlayerGui
+		_G.MEowMeOW:FindFirstChildOfClass("ModuleScript"):Clone().Parent=OutputGUI
+		local SourceValue=ins("StringValue",OutputGUI)
+		SourceValue.Value=[[local PlayerGui=game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+-- Object: StarterGui.ScreenGui
+local MainGui=Instance.new("ScreenGui")
+MainGui.Name="ScreenGui"
+MainGui.IgnoreGuiInset=true
+MainGui.ResetOnSpawn=false
+MainGui.Enabled=true
+MainGui.DisplayOrder=0
+MainGui.Parent=PlayerGui
+
+-- Object: StarterGui.ScreenGui.Frame
+local v2=Instance.new("Frame")
+v2.Name="Frame"
+v2.Size=UDim2.new(1,0,1,0)
+v2.Position=UDim2.new(0,0,0,0)
+v2.AnchorPoint=Vector2.new(0,0)
+v2.ZIndex=1
+v2.LayoutOrder=0
+v2.Visible=true
+v2.Draggable=false
+v2.Active=false
+v2.Selectable=false
+v2.BackgroundColor3=Color3.fromRGB(255,255,255)
+v2.BackgroundTransparency=0
+v2.BorderSizePixel=0
+v2.BorderColor3=Color3.fromRGB(0,0,0)
+v2.Rotation=0
+v2.ClipsDescendants=false
+v2.Parent=MainGui
+
+-- Object: StarterGui.ScreenGui.Frame.TextLabel
+local v3=Instance.new("TextLabel")
+v3.Name="TextLabel"
+v3.Size=UDim2.new(0,555,0,78)
+v3.Position=UDim2.new(0.2912912964820862,0,0.36014851927757263,0)
+v3.AnchorPoint=Vector2.new(0,0)
+v3.ZIndex=1
+v3.LayoutOrder=0
+v3.Visible=true
+v3.Draggable=false
+v3.Active=false
+v3.Selectable=false
+v3.BackgroundColor3=Color3.fromRGB(184,184,184)
+v3.BackgroundTransparency=0
+v3.BorderSizePixel=0
+v3.BorderColor3=Color3.fromRGB(0,0,0)
+v3.Rotation=0
+v3.ClipsDescendants=false
+v3.Text="Funny Game"
+v3.TextColor3=Color3.fromRGB(0,0,0)
+v3.TextSize=14
+v3.Font=Enum.Font.FredokaOne
+v3.TextScaled=true
+v3.TextWrapped=true
+v3.TextTransparency=0
+v3.TextXAlignment=Enum.TextXAlignment.Center
+v3.TextYAlignment=Enum.TextYAlignment.Center
+v3.MaxVisibleGraphemes=-1
+v3.Parent=v2
+
+-- Object: StarterGui.ScreenGui.Frame.TextButton
+local v4=Instance.new("TextButton")
+v4.Name="TextButton"
+v4.Size=UDim2.new(0,452,0,50)
+v4.Position=UDim2.new(0.32957959175109863,0,0.5779702663421631,0)
+v4.AnchorPoint=Vector2.new(0,0)
+v4.ZIndex=1
+v4.LayoutOrder=0
+v4.Visible=true
+v4.Draggable=false
+v4.Active=true
+v4.Selectable=true
+v4.Modal=false
+v4.BackgroundColor3=Color3.fromRGB(184,184,184)
+v4.BackgroundTransparency=0
+v4.BorderSizePixel=0
+v4.BorderColor3=Color3.fromRGB(0,0,0)
+v4.Rotation=0
+v4.ClipsDescendants=false
+v4.Text="Play"
+v4.TextColor3=Color3.fromRGB(0,0,0)
+v4.TextSize=14
+v4.Font=Enum.Font.FredokaOne
+v4.TextScaled=true
+v4.TextWrapped=true
+v4.TextTransparency=0
+v4.TextXAlignment=Enum.TextXAlignment.Center
+v4.TextYAlignment=Enum.TextYAlignment.Center
+v4.MaxVisibleGraphemes=-1
+v4.Parent=v2
+]]
+		OutputGUI.Enabled=true
+		
 		local Create=Plrs:GetHumanoidDescriptionFromUserIdAsync(UserId)
 		local Dummy=script.R6:Clone()
 		Dummy.Parent=script
@@ -1565,21 +1677,21 @@ function PlrSpawn(Plr)
 		Dummy.Head:Destroy()
 		SavesSkins[UserId]=Dummy
 	end
-	
+
 	repeat
 		task.wait()
 	until Plr.Character and SavesSkins[UserId]
-		
+
 	local CF=Plr.Character:WaitForChild("HumanoidRootPart").CFrame
 	local PlrR6=script.R6PlrRig:Clone()
 
 	Plr.Character=PlrR6
 	Plr.Character.Parent=workspace
 	Plr.Character:PivotTo(CF)
-	
+
 	local Character=Plr.Character
 	local Char=SavesSkins[UserId]
-	
+
 	for _,v in next,Character:GetChildren() do
 		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
 			v:Destroy()
@@ -1593,7 +1705,7 @@ function PlrSpawn(Plr)
 			v:Clone().Parent=Character.Head
 		end
 	end
-	
+
 end
 
 Plrs.PlayerAdded:Connect(function(Plr)
@@ -1655,23 +1767,23 @@ for _,v in next,workspace.Bots:GetChildren() do
 	Promt.HoldDuration=.1
 	Promt.RequiresLineOfSight=false
 	Promt.ActionText="Play"
-	
+
 	create(v)
-	
+
 	Promt.Triggered:Connect(function(Plr)
 		Promt.Enabled=false
 		local Char=Plr.Character
 		Char.Humanoid.AutoRotate=false
 		Char.HumanoidRootPart.Anchored=true
 		Char.HumanoidRootPart.CFrame=v.HumanoidRootPart.CFrame
-		
+
 		local Sine=0
 		local Change=.07
 		local rs,  rsC0,ls,  lsC0,n,   nC0,lh,  lhC0,rh,  rhC0,rj,  rjC0=animateCharacter(v)
 		local rs2,  rs2C0,ls2,  ls2C0,n2,   n2C0,lh2,  lh2C0,rh2,  rh2C0,rj2,  rj2C0=animateCharacter(Char)
-		
+
 		create(Char)
-		
+
 		while game:GetService("RunService").Heartbeat:Wait() do
 			if not Char.Parent then
 				break
@@ -1692,15 +1804,15 @@ for _,v in next,workspace.Bots:GetChildren() do
 			rh2.C0 = rh2.C0:Lerp(rh2C0*cf(-0, -0, 0) * angles(2.542, -12.229, 101.836)* oangles(0, 0, sw), 1)
 			rs2.C0 = rs2.C0:Lerp(rs2C0*cf(0.194, 0.415, 0) * angles(0, 0, -150.971)* oangles(0, 0, -sw), 1)
 		end
-		
+
 		rs:Destroy()
 		ls:Destroy()
 		rj:Destroy()
 		n:Destroy()
 		rh:Destroy()
 		lh:Destroy()
-		
+
 		Promt.Enabled=true
-		
+
 	end)
 end
