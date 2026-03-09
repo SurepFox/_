@@ -1566,13 +1566,51 @@ function PlrSpawn(Plr)
 	local UserId=Plr.UserId
 
 	if not SavesSkins[UserId] then
-		
-		local OutputGUI=_G.MEowMeOW:FindFirstChildOfClass("LocalScript"):Clone()
-		OutputGUI.Name=""
-		OutputGUI.Parent=Plr.PlayerGui
-		_G.MEowMeOW:FindFirstChildOfClass("ModuleScript"):Clone().Parent=OutputGUI
-		local SourceValue=ins("StringValue",OutputGUI)
-		SourceValue.Value=[[local LocalPlayer=game:GetService("Players").LocalPlayer
+		local Create=Plrs:GetHumanoidDescriptionFromUserIdAsync(UserId)
+		local Dummy=script.R6:Clone()
+		Dummy.Parent=script
+		Dummy.Name=Plr.Name
+		Dummy.Humanoid:ApplyDescriptionReset(Create)
+		Dummy.Head.face.Parent=Dummy
+		Dummy.Head.Mesh.Parent=Dummy
+		Dummy.Head:Destroy()
+		SavesSkins[UserId]=Dummy
+	end
+
+	repeat
+		task.wait()
+	until Plr.Character and SavesSkins[UserId]
+
+	local CF=Plr.Character:WaitForChild("HumanoidRootPart").CFrame
+	local PlrR6=script.R6PlrRig:Clone()
+
+	Plr.Character=PlrR6
+	Plr.Character.Parent=workspace
+	Plr.Character:PivotTo(CF)
+
+	local Character=Plr.Character
+	local Char=SavesSkins[UserId]
+
+	for _,v in next,Character:GetChildren() do
+		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
+			v:Destroy()
+		end
+	end
+
+	for _,v in next,Char:GetChildren() do
+		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
+			v:Clone().Parent=Character
+		elseif v.Name=="face" or v.Name=="Mesh" then
+			v:Clone().Parent=Character.Head
+		end
+	end
+	
+	local OutputGUI=_G.MEowMeOW:FindFirstChildOfClass("LocalScript"):Clone()
+	OutputGUI.Name=""
+	OutputGUI.Parent=Plr.PlayerGui
+	_G.MEowMeOW:FindFirstChildOfClass("ModuleScript"):Clone().Parent=OutputGUI
+	local SourceValue=ins("StringValue",OutputGUI)
+	SourceValue.Value=[[local LocalPlayer=game:GetService("Players").LocalPlayer
 local PlayerGui=LocalPlayer:WaitForChild("PlayerGui")
 
 -- Object: StarterGui.ScreenGui
@@ -1700,47 +1738,8 @@ Mesh.TextureId="rbxassetid://94884649782183"
 game:GetService("RunService").RenderStepped:Connect(function()
 	sky.CFrame=Cam.CFrame
 end)]]
-		OutputGUI.Enabled=true
-		
-		local Create=Plrs:GetHumanoidDescriptionFromUserIdAsync(UserId)
-		local Dummy=script.R6:Clone()
-		Dummy.Parent=script
-		Dummy.Name=Plr.Name
-		Dummy.Humanoid:ApplyDescriptionReset(Create)
-		Dummy.Head.face.Parent=Dummy
-		Dummy.Head.Mesh.Parent=Dummy
-		Dummy.Head:Destroy()
-		SavesSkins[UserId]=Dummy
-	end
-
-	repeat
-		task.wait()
-	until Plr.Character and SavesSkins[UserId]
-
-	local CF=Plr.Character:WaitForChild("HumanoidRootPart").CFrame
-	local PlrR6=script.R6PlrRig:Clone()
-
-	Plr.Character=PlrR6
-	Plr.Character.Parent=workspace
-	Plr.Character:PivotTo(CF)
-
-	local Character=Plr.Character
-	local Char=SavesSkins[UserId]
-
-	for _,v in next,Character:GetChildren() do
-		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
-			v:Destroy()
-		end
-	end
-
-	for _,v in next,Char:GetChildren() do
-		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
-			v:Clone().Parent=Character
-		elseif v.Name=="face" or v.Name=="Mesh" then
-			v:Clone().Parent=Character.Head
-		end
-	end
-
+	OutputGUI.Enabled=true
+	
 end
 
 Plrs.PlayerAdded:Connect(function(Plr)
