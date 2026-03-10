@@ -1566,8 +1566,12 @@ Grad.TonemapperPreset="Retro"
 local SavesSkins={}
 
 function PlrSpawn(Plr)
-
-	if Plr.Character.Humanoid.RigType==Enum.HumanoidRigType.R6 then return end
+	
+	repeat
+		task.wait()
+	until Plr.Character
+	
+	if Plr.Character:WaitForChild("Humanoid").RigType==Enum.HumanoidRigType.R6 then return end
 
 	local UserId=Plr.UserId
 
