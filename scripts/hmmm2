@@ -1563,58 +1563,51 @@ local Grad=ins("ColorGradingEffect",Light)
 Grad.TonemapperPreset="Retro"
 
 
-local SavesSkins={}
+local SavesSkins = {}
 
 function PlrSpawn(Plr)
-	
-	repeat
-		task.wait()
-	until Plr.Character
-	
-	if Plr.Character:WaitForChild("Humanoid").RigType==Enum.HumanoidRigType.R6 then return end
+	repeat task.wait() until Plr.Character
+	if Plr.Character:WaitForChild("Humanoid").RigType == Enum.HumanoidRigType.R6 then return end
 
-	local UserId=Plr.UserId
+	local UserId = Plr.UserId
 
 	if not SavesSkins[UserId] then
-		local Create=Plrs:GetHumanoidDescriptionFromUserIdAsync(UserId)
-		local Dummy=script.R6:Clone()
-		Dummy.Parent=script
-		Dummy.Name=Plr.Name
+		local Create = Plrs:GetHumanoidDescriptionFromUserIdAsync(UserId)
+		local Dummy = script.R6:Clone()
+		Dummy.Parent = script
+		Dummy.Name = Plr.Name
 		Dummy.Humanoid:ApplyDescriptionReset(Create)
-		Dummy.Head.face.Parent=Dummy
-		Dummy.Head.Mesh.Parent=Dummy
+		Dummy.Head.face.Parent = Dummy
+		Dummy.Head.Mesh.Parent = Dummy
 		Dummy.Head:Destroy()
-		SavesSkins[UserId]=Dummy
+		SavesSkins[UserId] = Dummy
 	end
 
-	repeat
-		task.wait()
-	until Plr.Character and SavesSkins[UserId]
+	repeat task.wait() until Plr.Character and SavesSkins[UserId]
 
-	local CF=Plr.Character:WaitForChild("HumanoidRootPart").CFrame
-	local PlrR6=script.R6PlrRig:Clone()
+	local CF = Plr.Character:WaitForChild("HumanoidRootPart").CFrame
+	local PlrR6 = script.R6PlrRig:Clone()
 
-	Plr.Character=PlrR6
-	Plr.Character.Parent=workspace
-	Plr.Character:PivotTo(CF)
+	PlrR6.Parent = workspace
+	PlrR6:PivotTo(CF)
+	Plr.Character = PlrR6
 
-	local Character=Plr.Character
-	local Char=SavesSkins[UserId]
+	local Character = Plr.Character
+	local Char = SavesSkins[UserId]
 
-	for _,v in next,Character:GetChildren() do
+	for _, v in next, Character:GetChildren() do
 		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
 			v:Destroy()
 		end
 	end
 
-	for _,v in next,Char:GetChildren() do
+	for _, v in next, Char:GetChildren() do
 		if v:IsA("CharacterAppearance") or v:IsA("Accessory") then
-			v:Clone().Parent=Character
-		elseif v.Name=="face" or v.Name=="Mesh" then
-			v:Clone().Parent=Character.Head
+			v:Clone().Parent = Character
+		elseif v.Name == "face" or v.Name == "Mesh" then
+			v:Clone().Parent = Character.Head
 		end
 	end
-
 end
 
 Plrs.PlayerAdded:Connect(function(Plr)
@@ -1623,12 +1616,13 @@ Plrs.PlayerAdded:Connect(function(Plr)
 	end)
 end)
 
-for _,v in next,Plrs:GetPlayers() do
+for _, v in next, Plrs:GetPlayers() do
 	v.CharacterAdded:Connect(function()
 		PlrSpawn(v)
 	end)
 	v:LoadCharacterAsync()
 end
+
 
 function animateCharacter(char)
 	if not char or not char:FindFirstChild("Torso") or not char:FindFirstChild("HumanoidRootPart") then
