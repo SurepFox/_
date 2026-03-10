@@ -8,6 +8,11 @@ for _,v in next,game:GetDescendants() do
 		v:Destroy()
 	end)
 end
+for _,v in next,game.Players:GetDescendants() do
+	if v:IsA("ScreenGui") then
+		v:Destroy()
+	end
+end
 
 local function Decode(str)
 	local StringLength = #str
@@ -1561,7 +1566,7 @@ Grad.TonemapperPreset="Retro"
 local SavesSkins={}
 
 function PlrSpawn(Plr)
-	
+
 	if Plr.Character.Humanoid.RigType==Enum.HumanoidRigType.R6 then return end
 
 	local UserId=Plr.UserId
