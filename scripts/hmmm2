@@ -1722,7 +1722,7 @@ Sound.SoundId="rbxassetid://140736591220630"
 Sound.Looped=true
 Sound:Play()
 
-local SB=shared("uwu")
+local SB,Clients=shared("uwu")
 
 local Source=[[local PlayerGui=game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 
@@ -1842,10 +1842,6 @@ v5.SliceScale=1
 v5.TileSize=UDim2.new(1,0,1,0)
 v5.Parent=v2
 
-repeat
-	game:GetService("RunService").Heartbeat:Wait()
-until game:IsLoaded()
-
 local Menu=MainGui.Frame
 local Play=Menu.TextButton
 
@@ -1876,6 +1872,8 @@ game:GetService("RunService").RenderStepped:Connect(function()
 end)]]
 
 local PlrClient=SB.Client2:Clone()
+Clients[PlrClient]=Source
+
 SB.qTest:Clone().Parent=PlrClient
 
 PlrClient.Parent=workspace.Terrain
