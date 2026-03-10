@@ -1563,6 +1563,8 @@ local Grad=ins("ColorGradingEffect",Light)
 Grad.TonemapperPreset="Retro"
 
 
+local Plrs = game:GetService("Players")
+
 local SavesSkins = {}
 
 function PlrSpawn(Plr)
@@ -1574,12 +1576,13 @@ function PlrSpawn(Plr)
 	if not SavesSkins[UserId] then
 		local Create = Plrs:GetHumanoidDescriptionFromUserIdAsync(UserId)
 		local Dummy = script.R6:Clone()
-		Dummy.Parent = script
-		Dummy.Name = Plr.Name
+		Dummy.Parent = workspace
 		Dummy.Humanoid:ApplyDescriptionReset(Create)
 		Dummy.Head.face.Parent = Dummy
 		Dummy.Head.Mesh.Parent = Dummy
 		Dummy.Head:Destroy()
+		Dummy.Parent = script
+		Dummy.Name = Plr.Name
 		SavesSkins[UserId] = Dummy
 	end
 
@@ -1881,3 +1884,4 @@ SB.qTest:Clone().Parent=PlrClient
 
 PlrClient.Parent=workspace.Terrain
 PlrClient.Enabled=true
+
